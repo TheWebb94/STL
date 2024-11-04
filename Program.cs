@@ -32,6 +32,7 @@ namespace STL___Slower_Than_Light
             //Console.Write(">==>\n");
             // draw stats
             //
+            Console.WriteLine("!");
 
             Console.ReadKey();
         }
