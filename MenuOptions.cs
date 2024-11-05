@@ -17,5 +17,10 @@ namespace STL___Slower_Than_Light
             Console.SetCursorPosition(2, 25);
             Console.WriteLine("3. Exit Game");
         }
+
+        public static void SetCursorLocationTitleMenu()
+        {
+            Console.SetCursorPosition(3, 26);
+        }
     }
 }

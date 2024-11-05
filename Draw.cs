@@ -11,11 +11,11 @@ namespace STL___Slower_Than_Light
         public static void TitleScreen()
         {
             Draw.Starfield();
+            MenuOptions.TitleMenuOptions();
             Console.ForegroundColor = ConsoleColor.Blue;
             Logo();
             MenuPanel();
             Console.ResetColor();
-            MenuOptions.TitleMenuOptions();
         }
 
         public static void Scenario()

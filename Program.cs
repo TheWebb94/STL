@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/*to be done:
+    enemy ship spawns in a random location
+
+*/
 namespace STL___Slower_Than_Light
 {
     internal class Program
@@ -12,10 +16,9 @@ namespace STL___Slower_Than_Light
         {
             //Draw main menu 
             Draw.TitleScreen();
+            MenuOptions.SetCursorLocationTitleMenu();
 
-            Console.SetCursorPosition(3, 26);
-
-            string menuChoice = Console.ReadLine();
+            string menuChoice = GetPlayerChoice.PlayerEntry();
 
             switch (menuChoice)
 
