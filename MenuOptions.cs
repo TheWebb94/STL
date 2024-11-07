@@ -22,5 +22,26 @@ namespace STL___Slower_Than_Light
         {
             Console.SetCursorPosition(3, 26);
         }
+
+        public static void HangerMenuOptions()
+        {
+            Console.SetCursorPosition(3, 23);
+            Console.WriteLine("Customise which module:");
+            Console.SetCursorPosition(3, 24);
+            Console.WriteLine("1. Engines");
+            Console.SetCursorPosition(3, 25);
+            Console.WriteLine("2. Hull");
+            Console.SetCursorPosition(3, 26);
+            Console.WriteLine("3. Weapons");
+            Console.SetCursorPosition(3, 27);
+            Console.WriteLine("4. Cockpit");
+
+        }
+        public static void SetCursorLocationHangarMenu()
+        {
+            Console.SetCursorPosition(3, 28);
+        }
+
     }
+
 }
