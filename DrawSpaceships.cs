@@ -1,27 +1,129 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace STL___Slower_Than_Light
 {
-    internal class DrawSpaceships
+    internal class SpaceShipFactory
     {
-        public static void PlayerShip()
+        public Spaceship SpawnSpaceShip(ShipType shipType)
         {
-            int playerPositionX = 5;
-            int playerPositionY = 8;
-            Console.SetCursorPosition(playerPositionX, playerPositionY);
+            Spaceship spaceship;
+
+            switch(shipType)
+            {
+                case ShipType.Player:
+                    spaceship = new Spaceship(shipType);
+                    break;
+
+                case ShipType.Drone:
+                    spaceship = new Spaceship(shipType);
+                    break;
+
+                default:
+                    throw new NotImplementedException("ShipType not registered");
+            }
+
+            ActiveShipManager.AddSpaceship(spaceship);
+
+            return spaceship;
+        }
+    }
+
+    public class Spaceship
+    {
+        int _positionX;
+        int _positionY;
+        ShipType _shipType;
+
+        public Spaceship(ShipType shipType)
+        {
+            _shipType = shipType;
+            SetShipLocation();
+        }
+
+        public void DrawShip()
+        {
+            switch (_shipType)
+            {
+                case ShipType.Player:
+                    DrawPlayerShip();
+                    break;
+               
+                case ShipType.Drone:
+                    DrawDroneShip();
+                    break;
+
+                default:
+                    throw new NotImplementedException("ShipType not registered");
+            }
+        }
+
+        public void SetShipLocation()
+        {
+            switch(_shipType)
+            {
+                case ShipType.Player:
+                    SetLocation(5, 8);
+                    break;
+                case ShipType.Drone:
+                    var (x, y) = GetRandomCoordinates();
+                    SetLocation(x, y);  
+                    break;
+            }
+        }
+
+        private (int, int) GetRandomCoordinates()
+        {
+
+            var x = 1;
+            var y = 1;
+            return (x, y);
+        }
+
+        private void SetLocation(int x, int y)
+        {
+            _positionX = x;
+            _positionY = y;
+        }
+
+        private void DrawPlayerShip()
+        {
+            Console.SetCursorPosition(_positionX, _positionY);
             Console.Write(">==>\n");
-            Console.SetCursorPosition(playerPositionX, playerPositionY + 1);
+            Console.SetCursorPosition(_positionX, _positionY + 1);
             Console.Write("  [OOO]>\n");
-            Console.SetCursorPosition(playerPositionX, playerPositionY + 2);
+            Console.SetCursorPosition(_positionX, _positionY + 2);
             Console.Write(" ={000][][]>\n");
-            Console.SetCursorPosition(playerPositionX, playerPositionY + 3);
+            Console.SetCursorPosition(_positionX, _positionY + 3);
             Console.Write("  [OOO]>\n");
-            Console.SetCursorPosition(playerPositionX, playerPositionY + 4);
+            Console.SetCursorPosition(_positionX, _positionY + 4);
             Console.Write(">==>\n");
         }
+
+        private void DrawDroneShip()
+        {
+            Console.SetCursorPosition(_positionX, _positionY);
+            Console.Write("   __\n");
+            Console.SetCursorPosition(_positionX, _positionY + 1);
+            Console.Write("  /  \\___\n");
+            Console.SetCursorPosition(_positionX, _positionY + 2);
+            Console.Write(" /  o    \\_\n");
+            Console.SetCursorPosition(_positionX, _positionY + 3);
+            Console.Write("|  o     o  |\n");
+            Console.SetCursorPosition(_positionX, _positionY + 4);
+            Console.Write(" \\_________/ \n");
+        }
+
+    }
+
+    public enum ShipType
+    {
+        Player,
+        Drone,
+        Missile
     }
 }

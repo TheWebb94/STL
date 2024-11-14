@@ -12,7 +12,13 @@ namespace STL___Slower_Than_Light
         {
             Console.Clear();
             DrawUI.Hangar();
-            DrawSpaceships.PlayerShip();
+            
+            var playerShip = new Spaceship(ShipType.Player);
+            playerShip.DrawShip();
+
+            var droneShip = new Spaceship(ShipType.Drone); 
+            droneShip.DrawShip();   
+
             MenuOptions.HangerMenuOptions();
             MenuOptions.SetCursorLocationHangarMenu();
         }

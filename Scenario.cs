@@ -13,8 +13,11 @@ namespace STL___Slower_Than_Light
             Console.Clear();
             DrawUI.Scenario();
             DrawUI.Starfield();
-            DrawSpaceships.PlayerShip();
-            DrawUI.Drone();
+            var _ = new SpaceShipFactory();
+            var enemy = _.SpawnSpaceShip(ShipType.Drone);
+
+            enemy.DrawShip();
+
             MenuOptions.SetCursorLocationTitleMenu();
 
         }
