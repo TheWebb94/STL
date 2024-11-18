@@ -27,6 +27,8 @@ namespace STL___Slower_Than_Light
                     break;
                 case "2":
                     Hangar.LaunchHangar();
+
+
                     break;
             }
             Console.ReadLine();
