@@ -4,34 +4,44 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-/*to be done:
-    enemy ship spawns in a random location
-    move level loaders into own classes
-*/
+
 namespace STL___Slower_Than_Light
 {
     internal class Program
     {
         static void Main()
         {
-            
-            DrawUI.TitleScreen();
 
-            string menuChoice = GetPlayerChoice.PlayerEntry();
+            bool inGame = true;
 
-            switch (menuChoice)
-                //while loop for remaining in combat so main menu can be returned to, same for hangar
+            while (inGame == true)
             {
-                case "1":
-                    Scenario.LaunchScenario();
-                    break;
-                case "2":
-                    Hangar.LaunchHangar();
 
+                DrawUI.TitleScreen();
+                char menuChoice = GetPlayerChoice.PlayerEntry();
 
-                    break;
+                switch (menuChoice)
+                //while loop for remaining in combat so main menu can be returned to, same for hangar
+                {
+                    case '1':
+                        bool inFight = true;
+                        Scenario battleScene = new Scenario();
+                        battleScene.LaunchScenario();
+                        FightStats stats = new FightStats(battleScene);
+                        stats.Draw();
+                        while (inFight == true)
+                        {
+
+                        }
+                        break;
+                    case '2':
+                        Hangar.LaunchHangar();
+                        break;
+                    case '3':
+                        inGame = false;
+                        break;
+                }
             }
-            Console.ReadLine();
         }
     }
 }

@@ -33,17 +33,25 @@ namespace STL___Slower_Than_Light
         }
     }
 
+    /// <summary>
+    /// Creation of player and enemy ships, giving locations, and draws them
+    /// </summary>
     public class Spaceship
     {
         int _positionX;
         int _positionY;
         ShipType _shipType;
 
+        public int PositionX { get => _positionX; set => _positionX = value; }
+        public int PositionY { get => _positionY; set => _positionY = value; }
+
+        // constructor that sets default values for ship type and location
         public Spaceship(ShipType shipType)
         {
             _shipType = shipType;
             SetShipLocation();
         }
+
 
         public void DrawShip()
         {
@@ -72,15 +80,16 @@ namespace STL___Slower_Than_Light
                 case ShipType.Drone:
                     var (x, y) = GetRandomCoordinates();
                     SetLocation(x, y);  
+
                     break;
             }
         }
 
         private (int, int) GetRandomCoordinates()
         {
-
-            var x = 1;
-            var y = 1;
+            Random random = new Random();
+            var x = random.Next(30, 84);   
+            var y = random.Next(1, 15);
             return (x, y);
         }
 
@@ -93,7 +102,8 @@ namespace STL___Slower_Than_Light
         private void DrawPlayerShip()
         {
             Console.SetCursorPosition(_positionX, _positionY);
-            Console.Write(">==>\n");
+            Console.Write(">==>");
+            Console.Write("\n");
             Console.SetCursorPosition(_positionX, _positionY + 1);
             Console.Write("  [OOO]>\n");
             Console.SetCursorPosition(_positionX, _positionY + 2);
@@ -107,15 +117,15 @@ namespace STL___Slower_Than_Light
         private void DrawDroneShip()
         {
             Console.SetCursorPosition(_positionX, _positionY);
-            Console.Write("   __\n");
+            Console.Write("--==--\n");
             Console.SetCursorPosition(_positionX, _positionY + 1);
-            Console.Write("  /  \\___\n");
+            Console.Write("[|||] \n");
             Console.SetCursorPosition(_positionX, _positionY + 2);
-            Console.Write(" /  o    \\_\n");
+            Console.Write(" {00} \n");
             Console.SetCursorPosition(_positionX, _positionY + 3);
-            Console.Write("|  o     o  |\n");
+            Console.Write("[|||] \n");
             Console.SetCursorPosition(_positionX, _positionY + 4);
-            Console.Write(" \\_________/ \n");
+            Console.Write("--==--\n");
         }
 
     }

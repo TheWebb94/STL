@@ -42,6 +42,11 @@ namespace STL___Slower_Than_Light
             Console.SetCursorPosition(3, 28);
         }
 
+        public static void SetCursorLocationStatsMenu(int input=1) 
+        {
+            int rowEntry= input;
+            Console.SetCursorPosition(94, rowEntry);
+        }
     }
 
 }

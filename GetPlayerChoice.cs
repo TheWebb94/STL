@@ -8,12 +8,13 @@ namespace STL___Slower_Than_Light
 {
     internal class GetPlayerChoice
     {
-        public static string PlayerEntry()
+        public static char PlayerEntry()
         {
             MenuOptions.SetCursorLocationTitleMenu();
-            string userInput = Console.ReadLine();
+            char userInput = Console.ReadKey(true).KeyChar;
 
-            if (userInput != "1" && userInput != "2" && userInput != "3")
+
+            if (userInput != '1' && userInput != '2' && userInput != '3')
             {
                 MenuOptions.SetCursorLocationTitleMenu();
                 Console.WriteLine("                  ");

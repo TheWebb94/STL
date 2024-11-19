@@ -16,11 +16,15 @@ namespace STL___Slower_Than_Light
             var playerShip = new Spaceship(ShipType.Player);
             playerShip.DrawShip();
 
-            var droneShip = new Spaceship(ShipType.Drone); 
-            droneShip.DrawShip();   
+          //  var droneShip = new Spaceship(ShipType.Drone); 
+          //  droneShip.DrawShip();   
 
             MenuOptions.HangerMenuOptions();
             MenuOptions.SetCursorLocationHangarMenu();
+
+            Console.ReadLine();
+            Console.Clear();
+
         }
     }
 }
