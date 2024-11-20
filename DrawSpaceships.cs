@@ -16,9 +16,9 @@ namespace STL___Slower_Than_Light
             switch(shipType)
             {
                 case ShipType.Player:
-                    spaceship = new Spaceship(shipType);
+                    spaceship = new Spaceship(shipType, ShipWeapons.Laser, ShipHullLevel.Basic, ShipEngineLevel.Thrusters);
                     break;
-
+                    
                 case ShipType.Drone:
                     spaceship = new Spaceship(shipType);
                     break;
@@ -26,8 +26,6 @@ namespace STL___Slower_Than_Light
                 default:
                     throw new NotImplementedException("ShipType not registered");
             }
-
-            ActiveShipManager.AddSpaceship(spaceship);
 
             return spaceship;
         }
@@ -41,14 +39,21 @@ namespace STL___Slower_Than_Light
         int _positionX;
         int _positionY;
         ShipType _shipType;
+        public ShipWeapons Weapon { get; set; }
+        public ShipHullLevel Hull { get; set; }
+        public ShipEngineLevel Engine { get; set; }
+
 
         public int PositionX { get => _positionX; set => _positionX = value; }
         public int PositionY { get => _positionY; set => _positionY = value; }
 
         // constructor that sets default values for ship type and location
-        public Spaceship(ShipType shipType)
+        public Spaceship(ShipType shipType, ShipWeapons weapon = ShipWeapons.none, ShipHullLevel hull = ShipHullLevel.Basic, ShipEngineLevel engine = ShipEngineLevel.Thrusters)
         {
             _shipType = shipType;
+            Weapon = weapon;
+            Hull = hull;
+            Engine = engine;
             SetShipLocation();
         }
 
@@ -102,30 +107,29 @@ namespace STL___Slower_Than_Light
         private void DrawPlayerShip()
         {
             Console.SetCursorPosition(_positionX, _positionY);
-            Console.Write(">==>");
-            Console.Write("\n");
+            Console.Write(SpaceshipComponentDrawer.EngineBuilder(Engine.ToString()));
             Console.SetCursorPosition(_positionX, _positionY + 1);
-            Console.Write("  [OOO]>\n");
+            Console.Write(SpaceshipComponentDrawer.WeaponBuilder(Weapon.ToString()));
             Console.SetCursorPosition(_positionX, _positionY + 2);
-            Console.Write(" ={000][][]>\n");
+            Console.Write(SpaceshipComponentDrawer.HullBuilder(Hull.ToString()));
             Console.SetCursorPosition(_positionX, _positionY + 3);
-            Console.Write("  [OOO]>\n");
+            Console.Write(SpaceshipComponentDrawer.WeaponBuilder(Weapon.ToString()));
             Console.SetCursorPosition(_positionX, _positionY + 4);
-            Console.Write(">==>\n");
+            Console.Write(SpaceshipComponentDrawer.EngineBuilder(Engine.ToString()));
         }
-
+        
         private void DrawDroneShip()
         {
             Console.SetCursorPosition(_positionX, _positionY);
-            Console.Write("--==--\n");
+            Console.Write("--==--");
             Console.SetCursorPosition(_positionX, _positionY + 1);
-            Console.Write("[|||] \n");
+            Console.Write("[|||]");
             Console.SetCursorPosition(_positionX, _positionY + 2);
-            Console.Write(" {00} \n");
+            Console.Write(" {00}");
             Console.SetCursorPosition(_positionX, _positionY + 3);
-            Console.Write("[|||] \n");
+            Console.Write("[|||]");
             Console.SetCursorPosition(_positionX, _positionY + 4);
-            Console.Write("--==--\n");
+            Console.Write("--==--");
         }
 
     }
@@ -136,4 +140,27 @@ namespace STL___Slower_Than_Light
         Drone,
         Missile
     }
+
+    public enum ShipWeapons
+    {
+        none,
+        Laser,
+        Missile,
+        Beam
+    }
+
+    public enum ShipHullLevel
+    {
+        Basic,
+        Reinforced,
+        HeavilyArmoured
+    }
+
+    public enum ShipEngineLevel
+    {
+        Thrusters,
+        DoubleBoosters,
+        HyperDrive
+    }
+
 }

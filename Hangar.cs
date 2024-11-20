@@ -10,21 +10,29 @@ namespace STL___Slower_Than_Light
     {
         public static void LaunchHangar()
         {
+            bool inHangar = true;
+
+           
             Console.Clear();
             DrawUI.Hangar();
-            
+
+            // BUG this is an instance of the playership, i think this is different to the players ship used in the scenario
             var playerShip = new Spaceship(ShipType.Player);
             playerShip.DrawShip();
-
-          //  var droneShip = new Spaceship(ShipType.Drone); 
-          //  droneShip.DrawShip();   
 
             MenuOptions.HangerMenuOptions();
             MenuOptions.SetCursorLocationHangarMenu();
 
-            Console.ReadLine();
-            Console.Clear();
+            while (inHangar)
+            {
+
+            }
+
+
 
         }
+
     }
 }
+
+ 

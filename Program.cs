@@ -16,7 +16,6 @@ namespace STL___Slower_Than_Light
 
             while (inGame == true)
             {
-
                 DrawUI.TitleScreen();
                 char menuChoice = GetPlayerChoice.PlayerEntry();
 
@@ -31,8 +30,10 @@ namespace STL___Slower_Than_Light
                         stats.Draw();
                         while (inFight == true)
                         {
-
+                            inFight = false; //replace this with gameplay loop
                         }
+                        Console.ReadKey();
+                        Console.Clear();
                         break;
                     case '2':
                         Hangar.LaunchHangar();

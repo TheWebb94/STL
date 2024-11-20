@@ -19,16 +19,15 @@ namespace STL___Slower_Than_Light
             Console.Clear();
             DrawUI.Scenario();
 
-            var _ = new SpaceShipFactory();
+            var newShip = new SpaceShipFactory();
 
-            playerShip = _.SpawnSpaceShip(ShipType.Player);
+            playerShip = newShip.SpawnSpaceShip(ShipType.Player);
             playerShip.DrawShip();
 
-            enemyShip = _.SpawnSpaceShip(ShipType.Drone);
+            enemyShip = newShip.SpawnSpaceShip(ShipType.Drone);
             enemyShip.DrawShip();
 
             MenuOptions.SetCursorLocationTitleMenu();
-
         }
     }
 }

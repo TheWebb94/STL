@@ -135,7 +135,7 @@ namespace STL___Slower_Than_Light
             int screenWidth = 89;
             int screenHeight = 19;
 
-            // Create a starfield effect by drawing stars randomly on the console
+            // Create a starfield effect by drawing stars randomly in the space the action panel is drawn
             for (int y = 1; y < screenHeight; y++)
             {
                 for (int x = 1; x < screenWidth; x++)
