@@ -72,12 +72,12 @@ namespace STL___Slower_Than_Light
                         if (PlayerShipManager.playerSpaceship.Weapon == ShipWeapons.Laser)
                         {
                             MenuOptions.ResetCursorPosition(MenuNames.Hangar);
-                            Console.WriteLine("weapon is already a laser.                 ");
+                            Console.WriteLine("Weapon is already a laser.                 ");
                         }
                         else
                         {
                             PlayerShipManager.playerSpaceship.Weapon = ShipWeapons.Laser;
-                            Console.WriteLine("weapon set to laser!                   ");
+                            Console.WriteLine("Weapon set to laser!                   ");
                             PlayerShipManager.playerSpaceship.DrawShip();
                         }
                         break;
@@ -225,7 +225,7 @@ namespace STL___Slower_Than_Light
                         else
                         {
                             PlayerShipManager.playerSpaceship.Hull = ShipHullLevel.Basic;
-                            Console.WriteLine("Engine set to Thrusters!                   ");
+                            Console.WriteLine("Hull set to Thrusters!                   ");
                             PlayerShipManager.playerSpaceship.DrawShip();
                         }
                         break;
