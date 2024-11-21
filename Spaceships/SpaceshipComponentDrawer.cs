@@ -8,7 +8,7 @@ namespace STL___Slower_Than_Light
 {
     internal class SpaceshipComponentDrawer
     {
-        //need to add in designs for all weapons, hulls and engines, then add in to construictor
+       
         public static string WeaponBuilder(string WeaponChoice)
         {
             string WeaponLayout;
@@ -37,7 +37,7 @@ namespace STL___Slower_Than_Light
             switch (hullChoice)
             {
                 case "Basic":
-                    hullLayout = "   [][]>   ";
+                    hullLayout = "   [][]>        ";
                     break;
                 case "Reinforced":
                     hullLayout = "     |[][]|>   ";

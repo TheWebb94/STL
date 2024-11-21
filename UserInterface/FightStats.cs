@@ -15,16 +15,16 @@ namespace STL___Slower_Than_Light
             this.battleScene = battleScene;
         }
 
-        public void Draw()
+        public void DrawCombatInfo()
         {
-           int distanceToEnemyX = battleScene.EnemyShip.PositionX - battleScene.PlayerShip.PositionX;
-           int distanceToEnemyY = battleScene.EnemyShip.PositionY - battleScene.PlayerShip.PositionY;
+            int distanceToEnemyX = battleScene.DistanceToEnemyX();
+            int distanceToEnemyY = battleScene.DistanceToEnemyY();
            double distanceToEnemyXY = Math.Sqrt((distanceToEnemyX*distanceToEnemyX) + (distanceToEnemyY*distanceToEnemyY));
 
-           MenuOptions.SetCursorLocationStatsMenu(1);
+           MenuOptions.ResetCursorPosition(MenuNames.Stats);
            Console.WriteLine("Ship Type: " + ShipType.Drone);
 
-           MenuOptions.SetCursorLocationStatsMenu(2);
+           MenuOptions.ResetCursorPosition(MenuNames.Stats,0,1);
            Console.WriteLine("Distance: " + distanceToEnemyXY.ToString("0.000"));
 
         }

@@ -7,29 +7,7 @@ using System.Threading.Tasks;
 
 namespace STL___Slower_Than_Light
 {
-    internal class SpaceShipFactory
-    {
-        public Spaceship SpawnSpaceShip(ShipType shipType)
-        {
-            Spaceship spaceship;
-
-            switch(shipType)
-            {
-                case ShipType.Player:
-                    spaceship = new Spaceship(shipType, ShipWeapons.Laser, ShipHullLevel.Basic, ShipEngineLevel.Thrusters);
-                    break;
-                    
-                case ShipType.Drone:
-                    spaceship = new Spaceship(shipType);
-                    break;
-
-                default:
-                    throw new NotImplementedException("ShipType not registered");
-            }
-
-            return spaceship;
-        }
-    }
+   
 
     /// <summary>
     /// Creation of player and enemy ships, giving locations, and draws them
@@ -132,13 +110,20 @@ namespace STL___Slower_Than_Light
             Console.Write("--==--");
         }
 
+        public void UpdateShipStats()
+        {
+            MenuOptions.ResetCursorPosition(MenuNames.Title);
+            Console.WriteLine($"Updated {this._shipType} Ship Stats:");
+            Console.WriteLine($"Weapon: {Weapon}, Hull: {Hull}, Engine: {Engine}");
+        }
+
     }
 
     public enum ShipType
     {
         Player,
         Drone,
-        Missile
+        
     }
 
     public enum ShipWeapons

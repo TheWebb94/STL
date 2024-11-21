@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,22 +15,23 @@ namespace STL___Slower_Than_Light
             MenuOptions.TitleMenuOptions();
             Console.ForegroundColor = ConsoleColor.Blue;
             Logo();
-            DrawPanel("titleMenu");
+            DrawPanel(PanelOptions.titleMenu);
             Console.ResetColor();
-            MenuOptions.SetCursorLocationTitleMenu();
+            MenuOptions.ResetCursorPosition(MenuNames.Title);
         }
 
         public static void Scenario()
         {
-            DrawPanel("action");
-            DrawPanel("stats");
-            DrawPanel("menu");
+            DrawPanel(PanelOptions.action);
+            DrawPanel(PanelOptions.stats);
+            DrawPanel(PanelOptions.menu);
             Starfield();
         }
         public static void Hangar()
         {
-            DrawPanel("action");
-            DrawPanel("titleMenu");
+            DrawPanel(PanelOptions.action);
+            DrawPanel(PanelOptions.menu);
+            DrawPanel(PanelOptions.stats);
         }
 
         /// <summary>
@@ -52,9 +54,7 @@ namespace STL___Slower_Than_Light
             Console.SetCursorPosition(logoPositionX, logoPositionY+5);
             Console.WriteLine("        \\/                    \\/");
         }
-
-
-        public static void DrawPanel(string panelToDraw)
+        public static void DrawPanel(PanelOptions panelToDraw)
         {
 
             int panelWidth = 0;
@@ -64,25 +64,25 @@ namespace STL___Slower_Than_Light
 
             switch (panelToDraw)
             {
-                case "menu":
+                case PanelOptions.menu:
                     panelWidth = 116;
                     panelHeight = 9;
                     panelPositionX = 0;
                     panelPositionY = 21;
                     break;
-                case "titleMenu":
+                case PanelOptions.titleMenu:
                     panelWidth = 90;
                     panelHeight = 9;
                     panelPositionX = 0;
                     panelPositionY = 21;
                     break;
-                case "action":
+                case PanelOptions.action:
                     panelWidth = 90;
                     panelHeight = 20;
                     panelPositionX = 0;
                     panelPositionY = 0;
                     break;
-                case "stats":
+                case PanelOptions.stats:
                     panelWidth = 22;
                     panelHeight = 20;
                     panelPositionX = 93;
@@ -92,6 +92,8 @@ namespace STL___Slower_Than_Light
                     break;
             }
 
+
+    
 
             // Draw the top border
             Console.ForegroundColor = ConsoleColor.Blue;
@@ -150,5 +152,12 @@ namespace STL___Slower_Than_Light
                 }
             }
         }
+    }
+    public enum PanelOptions
+    {
+        stats,
+        action,
+        menu,
+        titleMenu
     }
 }

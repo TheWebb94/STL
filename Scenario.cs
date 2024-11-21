@@ -1,4 +1,5 @@
-﻿using System;
+﻿using STL___Slower_Than_Light.Spaceships;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,26 +9,33 @@ namespace STL___Slower_Than_Light
 {
     internal class Scenario
     {
-        Spaceship playerShip;
-        Spaceship enemyShip;
 
-        public Spaceship PlayerShip { get => playerShip; set => playerShip = value; }
-        public Spaceship EnemyShip { get => enemyShip; set => enemyShip = value; }
+        private Spaceship playerShip = PlayerShipManager.playerSpaceship;
+        private Spaceship enemyShip;
 
         public void LaunchScenario() 
         {
             Console.Clear();
             DrawUI.Scenario();
 
-            var newShip = new SpaceShipFactory();
+            var newShip = new SpaceshipFactory();
 
-            playerShip = newShip.SpawnSpaceShip(ShipType.Player);
             playerShip.DrawShip();
 
             enemyShip = newShip.SpawnSpaceShip(ShipType.Drone);
             enemyShip.DrawShip();
 
-            MenuOptions.SetCursorLocationTitleMenu();
+            MenuOptions.ResetCursorPosition(MenuNames.Title);
+        }
+
+        internal int DistanceToEnemyX()
+        {
+            return enemyShip.PositionX - playerShip.PositionX;
+        }
+
+        internal int DistanceToEnemyY()
+        {
+            return enemyShip.PositionY - playerShip.PositionY;
         }
     }
 }

@@ -4,6 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+// playerspaceship needs to be customisable in hangar then usable in scenario
+// gameplay loop needs creating
+// stats for different engine,wep,hull pieces need creating and adding to player ship type
+// multiple enemy types with different stats, randomly fight one of 3/4
+//player and enemy health, damage etc need adding and drawing in stats panel in scneario
+
 
 namespace STL___Slower_Than_Light
 {
@@ -11,13 +17,12 @@ namespace STL___Slower_Than_Light
     {
         static void Main()
         {
-
             bool inGame = true;
 
             while (inGame == true)
             {
                 DrawUI.TitleScreen();
-                char menuChoice = GetPlayerChoice.PlayerEntry();
+                char menuChoice = MenuOptions.PlayerEntry(MenuNames.Title, new List<char> { '1', '2', '3'});
 
                 switch (menuChoice)
                 //while loop for remaining in combat so main menu can be returned to, same for hangar
@@ -27,7 +32,7 @@ namespace STL___Slower_Than_Light
                         Scenario battleScene = new Scenario();
                         battleScene.LaunchScenario();
                         FightStats stats = new FightStats(battleScene);
-                        stats.Draw();
+                        stats.DrawCombatInfo();
                         while (inFight == true)
                         {
                             inFight = false; //replace this with gameplay loop
