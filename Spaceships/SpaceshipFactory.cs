@@ -20,7 +20,7 @@ namespace STL___Slower_Than_Light
                         break;
 
                     case ShipType.Drone:
-                        spaceship = new Spaceship(shipType);
+                        spaceship = new Spaceship(shipType, ShipWeapons.Laser, ShipHullLevel.Drone, ShipEngineLevel.Drone);
                         break;
 
                     default:

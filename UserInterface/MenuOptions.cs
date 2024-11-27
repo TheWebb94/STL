@@ -77,7 +77,7 @@ namespace STL___Slower_Than_Light
             {
                 case MenuNames.Hangar:
                     cursorPostitionX = 3;
-                    cursorPostitionY = 28;
+                    cursorPostitionY = 22;
                     Console.SetCursorPosition(cursorPostitionX + offsetX, cursorPostitionY + offsetY);
                     break;
                 case MenuNames.Title:
@@ -96,56 +96,59 @@ namespace STL___Slower_Than_Light
                     Console.SetCursorPosition(cursorPostitionX + offsetX, cursorPostitionY + offsetY);
                     break;
                 default:
-                    throw new NotImplementedException();
+                    throw new Exception();
             }
         }
 
         internal static void EngineOptions()
         {
-          //  ClearMenuPanel();
-            ResetCursorPosition(MenuNames.Hangar, 0, -5);
+            //  ClearMenuPanel();
+            int offsetY =0;
+            ResetCursorPosition(MenuNames.Hangar, 0, offsetY);
             Console.WriteLine("Which engine would you like to install?");
-            ResetCursorPosition(MenuNames.Hangar, 0, -4);
+            ResetCursorPosition(MenuNames.Hangar, 0, offsetY+1);
             Console.WriteLine($"1. {ShipEngineLevel.Thrusters}");
-            ResetCursorPosition(MenuNames.Hangar, 0, -3);
+            ResetCursorPosition(MenuNames.Hangar, 0, offsetY+2);
             Console.WriteLine($"2. {ShipEngineLevel.DoubleBoosters}");
-            ResetCursorPosition(MenuNames.Hangar, 0, -2);
+            ResetCursorPosition(MenuNames.Hangar, 0, offsetY+3);
             Console.WriteLine($"3. {ShipEngineLevel.HyperDrive}");
-            ResetCursorPosition(MenuNames.Hangar, 0, -1);
+            ResetCursorPosition(MenuNames.Hangar, 0, offsetY+4);
             Console.WriteLine("4. Exit");
-            ResetCursorPosition(MenuNames.Hangar, 0, 0);
+            ResetCursorPosition(MenuNames.Hangar, 0, offsetY+5);
 
         }
 
         internal static void HullOptions()
         {
-            ResetCursorPosition(MenuNames.Hangar, 0, -5);
+            int offsetY = 0;
+            ResetCursorPosition(MenuNames.Hangar, 0, offsetY);
             Console.WriteLine("Which hull would you like to install?");
-            ResetCursorPosition(MenuNames.Hangar, 0, -4);
+            ResetCursorPosition(MenuNames.Hangar, 0, offsetY+1);
             Console.WriteLine($"1. {ShipHullLevel.Basic}");
-            ResetCursorPosition(MenuNames.Hangar, 0, -3);
+            ResetCursorPosition(MenuNames.Hangar, 0, offsetY+2);
             Console.WriteLine($"2. {ShipHullLevel.Reinforced}");
-            ResetCursorPosition(MenuNames.Hangar, 0, -2);
+            ResetCursorPosition(MenuNames.Hangar, 0, offsetY+3);
             Console.WriteLine($"3. {ShipHullLevel.HeavilyArmoured}");
-            ResetCursorPosition(MenuNames.Hangar, 0, -1);
+            ResetCursorPosition(MenuNames.Hangar, 0, offsetY+4);
             Console.WriteLine("4. Exit");
-            ResetCursorPosition(MenuNames.Hangar, 0, 0);
+            ResetCursorPosition(MenuNames.Hangar, 0, offsetY+5);
 
         }
 
         internal static void WeaponOptions()
         {
-            ResetCursorPosition(MenuNames.Hangar, 0, -5);
+            int offsetY = 0;
+            ResetCursorPosition(MenuNames.Hangar, 0, offsetY);
             Console.WriteLine("Which weapon would you like to install?");
-            ResetCursorPosition(MenuNames.Hangar, 0, -4);
+            ResetCursorPosition(MenuNames.Hangar, 0, offsetY+1);
             Console.WriteLine($"1. {ShipWeapons.Laser}");
-            ResetCursorPosition(MenuNames.Hangar, 0, -3);
+            ResetCursorPosition(MenuNames.Hangar, 0, offsetY+2);
             Console.WriteLine($"2. {ShipWeapons.Missile}");
-            ResetCursorPosition(MenuNames.Hangar, 0, -2);
+            ResetCursorPosition(MenuNames.Hangar, 0, offsetY+3);
             Console.WriteLine($"3. {ShipWeapons.Beam}");
-            ResetCursorPosition(MenuNames.Hangar, 0, -1);
+            ResetCursorPosition(MenuNames.Hangar, 0, offsetY+4);
             Console.WriteLine("4. Exit");
-            ResetCursorPosition(MenuNames.Hangar, 0, 0);
+            ResetCursorPosition(MenuNames.Hangar, 0, offsetY+5);
         }
     }
 }

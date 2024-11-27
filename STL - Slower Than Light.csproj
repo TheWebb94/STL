@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SpaceshipFactory.cs" />
+    <Compile Include="Spaceships\SpaceshipFactory.cs" />
     <Compile Include="Spaceships\DrawSpaceships.cs" />
     <Compile Include="Spaceships\PlayerShipManager.cs" />
     <Compile Include="UserInterface\DrawUI.cs" />

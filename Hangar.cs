@@ -70,12 +70,13 @@ namespace STL___Slower_Than_Light
                     case '1':
                         if (PlayerShipManager.playerSpaceship.Weapon == ShipWeapons.Laser)
                         {
-                            MenuOptions.ResetCursorPosition(MenuNames.Hangar);
+                            MenuOptions.ResetCursorPosition(MenuNames.Hangar, 0,6);
                             Console.WriteLine("Weapon is already a laser.                 ");
                         }
                         else
                         {
                             PlayerShipManager.playerSpaceship.Weapon = ShipWeapons.Laser;
+                            MenuOptions.ResetCursorPosition(MenuNames.Hangar, 0, 6);
                             Console.WriteLine("Weapon set to laser!                   ");
                             PlayerShipManager.playerSpaceship.DrawShip();
                         }
@@ -84,13 +85,14 @@ namespace STL___Slower_Than_Light
                     case '2':
                         if (PlayerShipManager.playerSpaceship.Weapon == ShipWeapons.Missile)
                         {
-                            MenuOptions.ResetCursorPosition(MenuNames.Hangar);
+                            MenuOptions.ResetCursorPosition(MenuNames.Hangar, 0, 6);
                             Console.WriteLine("Weapon is already at missile.          ");
                         }
                         else
                         {
                             PlayerShipManager.playerSpaceship.Weapon = ShipWeapons.Missile;
-                            Console.WriteLine("Weapon set to missille!              ");
+                            MenuOptions.ResetCursorPosition(MenuNames.Hangar, 0, 6);
+                            Console.WriteLine("Weapon set to missile!              ");
                             PlayerShipManager.playerSpaceship.DrawShip();
                         }
                         break;
@@ -104,6 +106,7 @@ namespace STL___Slower_Than_Light
                         else
                         {
                             PlayerShipManager.playerSpaceship.Weapon = ShipWeapons.Beam;
+                            MenuOptions.ResetCursorPosition(MenuNames.Hangar, 0, 6);
                             Console.WriteLine("Weapon set to Beam!                ");
                             PlayerShipManager.playerSpaceship.DrawShip();
                         }
@@ -126,8 +129,7 @@ namespace STL___Slower_Than_Light
 
                 if (choosingWeapon)
                 {
-                    DrawUI.Hangar();
-                    PlayerShipManager.playerSpaceship.DrawShip();
+                    DrawHangar();
                     MenuOptions.WeaponOptions();
                 }
             }
@@ -145,12 +147,13 @@ namespace STL___Slower_Than_Light
                     case '1':
                         if (PlayerShipManager.playerSpaceship.Engine == ShipEngineLevel.Thrusters)
                         {
-                            MenuOptions.ResetCursorPosition(MenuNames.Hangar);
+                            MenuOptions.ResetCursorPosition(MenuNames.Hangar, 0, 6);
                             Console.WriteLine("Engine is already a thruster.                 ");
                         }
                         else
                         {
                             PlayerShipManager.playerSpaceship.Engine = ShipEngineLevel.Thrusters;
+                            MenuOptions.ResetCursorPosition(MenuNames.Hangar, 0, 6);
                             Console.WriteLine("Engine set to Thrusters!                   ");
                             PlayerShipManager.playerSpaceship.DrawShip();
                         }
@@ -159,12 +162,13 @@ namespace STL___Slower_Than_Light
                     case '2': 
                         if (PlayerShipManager.playerSpaceship.Engine == ShipEngineLevel.DoubleBoosters)
                         {
-                            MenuOptions.ResetCursorPosition(MenuNames.Hangar);
+                            MenuOptions.ResetCursorPosition(MenuNames.Hangar, 0, 6);
                             Console.WriteLine("Engine is already at Double Boosters.          ");
                         }
                         else
                         {
                             PlayerShipManager.playerSpaceship.Engine = ShipEngineLevel.DoubleBoosters;
+                            MenuOptions.ResetCursorPosition(MenuNames.Hangar, 0, 6);
                             Console.WriteLine("Engine set to Double Boosters!              ");
                             PlayerShipManager.playerSpaceship.DrawShip();
                         }
@@ -173,12 +177,13 @@ namespace STL___Slower_Than_Light
                     case '3':
                         if (PlayerShipManager.playerSpaceship.Engine == ShipEngineLevel.HyperDrive)
                         {
-                            MenuOptions.ResetCursorPosition(MenuNames.Hangar);
+                            MenuOptions.ResetCursorPosition(MenuNames.Hangar, 0, 6);
                             Console.WriteLine("Engine is already at HyperDrive.            ");
                         }
                         else
                         {
                             PlayerShipManager.playerSpaceship.Engine = ShipEngineLevel.HyperDrive;
+                            MenuOptions.ResetCursorPosition(MenuNames.Hangar, 0, 6);
                             Console.WriteLine("Engine set to HyperDrive!                ");
                             PlayerShipManager.playerSpaceship.DrawShip();
                         }
@@ -201,8 +206,7 @@ namespace STL___Slower_Than_Light
 
                 if (choosingEngine)
                 {
-                    DrawUI.Hangar();
-                    PlayerShipManager.playerSpaceship.DrawShip();
+                    DrawHangar();
                     MenuOptions.EngineOptions();
                 }
             }
@@ -220,12 +224,13 @@ namespace STL___Slower_Than_Light
                     case '1':
                         if (PlayerShipManager.playerSpaceship.Hull == ShipHullLevel.Basic)
                         {
-                            MenuOptions.ResetCursorPosition(MenuNames.Hangar);
+                            MenuOptions.ResetCursorPosition(MenuNames.Hangar, 0, 6);
                             Console.WriteLine("Hull is already a basic hull.                 ");
                         }
                         else
                         {
                             PlayerShipManager.playerSpaceship.Hull = ShipHullLevel.Basic;
+                            MenuOptions.ResetCursorPosition(MenuNames.Hangar, 0, 6);
                             Console.WriteLine("Hull set to Thrusters!                   ");
                             PlayerShipManager.playerSpaceship.DrawShip();
                         }
@@ -234,12 +239,13 @@ namespace STL___Slower_Than_Light
                     case '2':
                         if (PlayerShipManager.playerSpaceship.Hull == ShipHullLevel.Reinforced)
                         {
-                            MenuOptions.ResetCursorPosition(MenuNames.Hangar);
+                            MenuOptions.ResetCursorPosition(MenuNames.Hangar,0,6);
                             Console.WriteLine("Hull is already reinforced.          ");
                         }
                         else
                         {
                             PlayerShipManager.playerSpaceship.Hull = ShipHullLevel.Reinforced;
+                            MenuOptions.ResetCursorPosition(MenuNames.Hangar, 0, 6);
                             Console.WriteLine("Hull set to reinforced!              ");
                             PlayerShipManager.playerSpaceship.DrawShip();
                         }
@@ -248,12 +254,13 @@ namespace STL___Slower_Than_Light
                     case '3':
                         if (PlayerShipManager.playerSpaceship.Hull == ShipHullLevel.HeavilyArmoured)
                         {
-                            MenuOptions.ResetCursorPosition(MenuNames.Hangar);
+                            MenuOptions.ResetCursorPosition(MenuNames.Hangar,0,6);
                             Console.WriteLine("Hull is already at Heavily armoured.            ");
                         }
                         else
                         {
                             PlayerShipManager.playerSpaceship.Hull = ShipHullLevel.HeavilyArmoured;
+                            MenuOptions.ResetCursorPosition(MenuNames.Hangar, 0, 6);
                             Console.WriteLine("Hull set to heavily armoured!                ");
                             PlayerShipManager.playerSpaceship.DrawShip();
                         }
@@ -277,8 +284,7 @@ namespace STL___Slower_Than_Light
 
                 if (choosingHull)
                 {
-                    DrawUI.Hangar();
-                    PlayerShipManager.playerSpaceship.DrawShip();
+                    DrawHangar();
                     MenuOptions.HullOptions();
                 }
             }

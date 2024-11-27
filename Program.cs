@@ -28,15 +28,8 @@ namespace STL___Slower_Than_Light
                 //while loop for remaining in combat so main menu can be returned to, same for hangar
                 {
                     case '1':
-                        bool inFight = true;
                         Scenario battleScene = new Scenario();
                         battleScene.LaunchScenario();
-                        FightStats stats = new FightStats(battleScene);
-                        stats.DrawCombatInfo();
-                        while (inFight == true)
-                        {
-                            inFight = false; //replace this with gameplay loop
-                        }
                         Console.ReadKey();
                         Console.Clear();
                         break;
