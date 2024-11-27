@@ -16,7 +16,9 @@ namespace STL___Slower_Than_Light
             Console.Clear();
             DrawUI.Hangar();
             PlayerShipManager.playerSpaceship.DrawShip();
+            PlayerShipManager.playerSpaceship.DisplayShipStats();
             MenuOptions.HangerMenuOptions();
+
 
 
             while (inHangar)
@@ -26,25 +28,19 @@ namespace STL___Slower_Than_Light
                 switch (menuChoice)
                 {
                     case '1':
-                        Console.Clear();
-                        DrawUI.Hangar();
-                        PlayerShipManager.playerSpaceship.DrawShip();
+                        RedrawHangar();
                         MenuOptions.EngineOptions();
                         UpgradeEngine();
                         break;
 
                     case '2':
-                        Console.Clear();
-                        DrawUI.Hangar();
-                        PlayerShipManager.playerSpaceship.DrawShip();
+                        RedrawHangar();
                         MenuOptions.HullOptions();
                         UpgradeHull();
                         break;
 
                     case '3':
-                        Console.Clear();
-                        DrawUI.Hangar();
-                        PlayerShipManager.playerSpaceship.DrawShip();
+                        RedrawHangar();
                         MenuOptions.WeaponOptions();
                         UpgradeWeapons();
                         break;
@@ -57,6 +53,14 @@ namespace STL___Slower_Than_Light
                 }
             }
             Console.Clear();
+        }
+
+        private static void RedrawHangar()
+        {
+            Console.Clear();
+            DrawUI.Hangar();
+            PlayerShipManager.playerSpaceship.DrawShip();
+            PlayerShipManager.playerSpaceship.DisplayShipStats();
         }
 
         private static void UpgradeWeapons()
@@ -122,13 +126,14 @@ namespace STL___Slower_Than_Light
                         Console.WriteLine("Invalid choice. Please try again.");
                         break;
                 }
-
+                PlayerShipManager.playerSpaceship.UpdateShipStats();
+                PlayerShipManager.playerSpaceship.DisplayShipStats();
 
                 if (choosingWeapon)
                 {
                     DrawUI.Hangar();
                     PlayerShipManager.playerSpaceship.DrawShip();
-                    MenuOptions.EngineOptions();
+                    MenuOptions.WeaponOptions();
                 }
             }
         }
@@ -196,8 +201,9 @@ namespace STL___Slower_Than_Light
                         Console.WriteLine("Invalid choice. Please try again.");
                         break;
                 }
+                PlayerShipManager.playerSpaceship.UpdateShipStats();
+                PlayerShipManager.playerSpaceship.DisplayShipStats();
 
-               
                 if (choosingEngine)
                 {
                     DrawUI.Hangar();
@@ -270,13 +276,15 @@ namespace STL___Slower_Than_Light
                         Console.WriteLine("Invalid choice. Please try again.");
                         break;
                 }
+                PlayerShipManager.playerSpaceship.UpdateShipStats();
+                PlayerShipManager.playerSpaceship.DisplayShipStats();
 
 
                 if (choosingHull)
                 {
                     DrawUI.Hangar();
                     PlayerShipManager.playerSpaceship.DrawShip();
-                    MenuOptions.EngineOptions();
+                    MenuOptions.HullOptions();
                 }
             }
         }

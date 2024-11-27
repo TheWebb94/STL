@@ -20,12 +20,16 @@ namespace STL___Slower_Than_Light
         public ShipWeapons Weapon { get; set; }
         public ShipHullLevel Hull { get; set; }
         public ShipEngineLevel Engine { get; set; }
+        public int Armour { get; private set; }
+        public int DodgeChance { get; private set; }
+        public int Damage { get; private set; }
+        public int Accuracy { get; private set; }
 
 
         public int PositionX { get => _positionX; set => _positionX = value; }
         public int PositionY { get => _positionY; set => _positionY = value; }
 
-        // constructor that sets default values for ship type and location
+        // constructor that sets default values for ship type, location, and stats
         public Spaceship(ShipType shipType, ShipWeapons weapon = ShipWeapons.none, ShipHullLevel hull = ShipHullLevel.Basic, ShipEngineLevel engine = ShipEngineLevel.Thrusters)
         {
             _shipType = shipType;
@@ -33,8 +37,75 @@ namespace STL___Slower_Than_Light
             Hull = hull;
             Engine = engine;
             SetShipLocation();
+            UpdateShipStats();
         }
 
+        public void UpdateShipStats()
+        {
+            
+            switch (Engine)
+            {
+                case ShipEngineLevel.Thrusters:
+                    DodgeChance = 10;
+                    break;
+
+                case ShipEngineLevel.DoubleBoosters:
+                    DodgeChance = 25;
+                    break;
+
+                case ShipEngineLevel.HyperDrive:
+                    DodgeChance = 40;
+                    break;
+
+                default:
+                    throw new NotImplementedException();
+            }
+
+            switch (Weapon)
+            {
+                case ShipWeapons.Laser:
+                    Accuracy = 75;
+                    Damage = 25;
+                    break;
+                case ShipWeapons.Missile:
+                    Accuracy = 50;
+                    Damage = 75;
+                    break;
+                case ShipWeapons.Beam:
+                    Accuracy = 90;
+                    Damage = 40;
+                    break;
+                default : 
+                    throw new NotImplementedException();
+            }
+
+            switch (Hull)
+            {
+                case ShipHullLevel.Basic:
+                    Armour = 0;
+                    break;
+                case ShipHullLevel.Reinforced:
+                    Armour = 10;
+                    break;
+                case ShipHullLevel.HeavilyArmoured:
+                    Armour = 20;
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
+        }
+
+        public void DisplayShipStats()
+        {
+            MenuOptions.ResetCursorPosition(MenuNames.Stats, 0, 0);
+            Console.WriteLine($"Armour:    {Armour}");
+            MenuOptions.ResetCursorPosition(MenuNames.Stats, 0, 1);
+            Console.WriteLine($"Damage:    {Damage}");
+            MenuOptions.ResetCursorPosition(MenuNames.Stats, 0, 2);
+            Console.WriteLine($"Accuracy:  {Accuracy}");
+            MenuOptions.ResetCursorPosition(MenuNames.Stats, 0, 3);
+            Console.WriteLine($"Dodge%:    {DodgeChance}");
+        }
 
         public void DrawShip()
         {
@@ -110,7 +181,7 @@ namespace STL___Slower_Than_Light
             Console.Write("--==--");
         }
 
-        public void UpdateShipStats()
+        public void UpdateShipComponenetMessage()
         {
             MenuOptions.ResetCursorPosition(MenuNames.Title);
             Console.WriteLine($"Updated {this._shipType} Ship Stats:");
