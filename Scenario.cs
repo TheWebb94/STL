@@ -41,8 +41,8 @@ namespace STL___Slower_Than_Light
         {
             bool inCombat = true;
 
-            int playerHealth = playerShip.TotalHealth;
-            int enemyHealth = enemyShip.TotalHealth;
+           // int playerHealth = playerShip.TotalHealth;
+           // int enemyHealth = enemyShip.TotalHealth;
 
             DrawStats();
 
