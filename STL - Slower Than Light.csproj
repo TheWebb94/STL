@@ -52,7 +52,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scenario.cs" />
-    <Compile Include="UserInterface\FightStats.cs" />
     <Compile Include="Spaceships\SpaceshipComponentDrawer.cs" />
   </ItemGroup>
   <ItemGroup>

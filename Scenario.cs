@@ -26,28 +26,41 @@ namespace STL___Slower_Than_Light
             enemyShip = newShip.SpawnSpaceShip(ShipType.Drone);
             enemyShip.DrawShip();
 
-            DrawStats();
 
-            FightStats stats = new FightStats(this);
-            stats.DrawCombatInfo();
 
-            StartCombat(stats);
+            StartCombat();
         }
 
         private void DrawStats()
         {
             playerShip.DisplayShipStats(10);
             enemyShip.DisplayShipStats(2, false);
+            DrawDistanceToEnemy();        
         }
 
-        private void StartCombat(FightStats stats)
+        private void StartCombat()
         {
             bool inCombat = true;
 
             while (inCombat)
             {
-
+                DrawStats();
             }
+        }
+
+
+        public void DrawDistanceToEnemy()
+        {
+            int distanceToEnemyX = DistanceToEnemyX();
+            int distanceToEnemyY = DistanceToEnemyY();
+            double distanceToEnemyXY = Math.Sqrt((distanceToEnemyX * distanceToEnemyX) + (distanceToEnemyY * distanceToEnemyY));
+
+            // Draw enemy ship type and distance
+            MenuOptions.ResetCursorPosition(MenuNames.Stats, 0, 0);
+            Console.WriteLine($"Ship Type: {ShipType.Drone}");
+            MenuOptions.ResetCursorPosition(MenuNames.Stats, 0, 1);
+            Console.WriteLine($"Distance: {distanceToEnemyXY:0.000}");
+
         }
 
         internal int DistanceToEnemyX()
