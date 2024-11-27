@@ -13,13 +13,8 @@ namespace STL___Slower_Than_Light
         {
             bool inHangar = true;
 
-            Console.Clear();
-            DrawUI.Hangar();
-            PlayerShipManager.playerSpaceship.DrawShip();
-            PlayerShipManager.playerSpaceship.DisplayShipStats();
+            DrawHangar();
             MenuOptions.HangerMenuOptions();
-
-
 
             while (inHangar)
             {
@@ -28,19 +23,19 @@ namespace STL___Slower_Than_Light
                 switch (menuChoice)
                 {
                     case '1':
-                        RedrawHangar();
+                        DrawHangar();
                         MenuOptions.EngineOptions();
                         UpgradeEngine();
                         break;
 
                     case '2':
-                        RedrawHangar();
+                        DrawHangar();
                         MenuOptions.HullOptions();
                         UpgradeHull();
                         break;
 
                     case '3':
-                        RedrawHangar();
+                        DrawHangar();
                         MenuOptions.WeaponOptions();
                         UpgradeWeapons();
                         break;
@@ -55,7 +50,7 @@ namespace STL___Slower_Than_Light
             Console.Clear();
         }
 
-        private static void RedrawHangar()
+        private static void DrawHangar()
         {
             Console.Clear();
             DrawUI.Hangar();
