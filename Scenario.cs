@@ -15,32 +15,39 @@ namespace STL___Slower_Than_Light
         /// <summary>
         /// This draws the combat scenario between player and the enemy
         /// </summary>
-        public void LaunchScenario() 
+        public void LaunchScenario()
         {
             Console.Clear();
             DrawUI.Scenario();
 
             playerShip.DrawShip();
-            playerShip.DisplayShipStats(10);
 
             var newShip = new SpaceshipFactory();
             enemyShip = newShip.SpawnSpaceShip(ShipType.Drone);
             enemyShip.DrawShip();
-            enemyShip.DisplayShipStats(2, false);
+
+            DrawStats();
 
             FightStats stats = new FightStats(this);
             stats.DrawCombatInfo();
 
-            bool inCombat = true;
-            while (inCombat)
-            {
-                StartCombat(stats);
-            }
+            StartCombat(stats);
+        }
+
+        private void DrawStats()
+        {
+            playerShip.DisplayShipStats(10);
+            enemyShip.DisplayShipStats(2, false);
         }
 
         private void StartCombat(FightStats stats)
         {
-           // throw new NotImplementedException();
+            bool inCombat = true;
+
+            while (inCombat)
+            {
+
+            }
         }
 
         internal int DistanceToEnemyX()
@@ -53,6 +60,6 @@ namespace STL___Slower_Than_Light
             return enemyShip.PositionY - playerShip.PositionY;
         }
 
-        
+         
     }
 }

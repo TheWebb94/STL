@@ -92,17 +92,17 @@ namespace STL___Slower_Than_Light
             {
                 case ShipWeapons.Laser:
                     Accuracy = 75;
-                    Damage = 25;
+                    Damage = 10;
                     WeaponSize = 2;
                     break;
                 case ShipWeapons.Missile:
                     Accuracy = 50;
-                    Damage = 75;
+                    Damage = 40;
                     WeaponSize = 4;
                     break;
                 case ShipWeapons.Beam:
                     Accuracy = 90;
-                    Damage = 40;
+                    Damage = 20;
                     WeaponSize = 4;
                     break;
                 default : 
@@ -141,7 +141,7 @@ namespace STL___Slower_Than_Light
             if (displayShipType)
             {
                 MenuOptions.ResetCursorPosition(MenuNames.Stats, 0, offsetY);
-                Console.WriteLine($"Ship Type:    {_shipType}");
+                Console.WriteLine($"Ship Type:   {_shipType}");
                 offsetY++;
             }
             MenuOptions.ResetCursorPosition(MenuNames.Stats, 0, offsetY + 1);
