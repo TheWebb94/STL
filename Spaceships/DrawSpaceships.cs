@@ -24,11 +24,19 @@ namespace STL___Slower_Than_Light
         public int DodgeChance { get; private set; }
         public int Damage { get; private set; }
         public int Accuracy { get; private set; }
+
         public int EngineSize { get; private set; }
+        public int EngineHealth { get;  set; }
+
         public int WeaponSize { get; private set; }
+        public int WeaponHealth { get; set; }
+
         public int HullSize { get; private set; }
+        public int HullHealth { get; set; }
         public int CockpitSize { get; private set; }
-        public int Health { get; private set; }
+        public int CockpitHealth { get; set; }
+
+        public int TotalHealth { get;  set; }
 
 
 
@@ -50,38 +58,32 @@ namespace STL___Slower_Than_Light
         {
             
             CockpitSize = 1;
+            CockpitHealth = 20;
 
-            switch (_shipType)
-            {
-                case ShipType.Player:
-                    Health = 100;
-                    break;
-                case ShipType.Drone:
-                    Health = 50;
-                    break;
-                default:
-                    throw new NotImplementedException();
-            }
             switch (Engine)
             {
                 case ShipEngineLevel.Thrusters:
-                    DodgeChance = 10;
+                    DodgeChance = 5;
                     EngineSize = 2;
+                    EngineHealth = 20;
                     break;
 
                 case ShipEngineLevel.DoubleBoosters:
-                    DodgeChance = 25;
+                    DodgeChance = 10;
                     EngineSize = 4;
+                    EngineHealth = 20;
                     break;
 
                 case ShipEngineLevel.HyperDrive:
-                    DodgeChance = 40;
+                    DodgeChance = 20;
                     EngineSize = 5;
+                    EngineHealth = 20;
                     break;
 
                 case ShipEngineLevel.Drone:
-                    DodgeChance = 30;
+                    DodgeChance = 10;
                     EngineSize = 2;
+                    EngineHealth = 10;
                     break;
 
                 default:
@@ -91,19 +93,22 @@ namespace STL___Slower_Than_Light
             switch (Weapon)
             {
                 case ShipWeapons.Laser:
-                    Accuracy = 75;
-                    Damage = 10;
-                    WeaponSize = 2;
-                    break;
-                case ShipWeapons.Missile:
-                    Accuracy = 50;
-                    Damage = 40;
-                    WeaponSize = 4;
-                    break;
-                case ShipWeapons.Beam:
                     Accuracy = 90;
                     Damage = 20;
+                    WeaponSize = 2;
+                    WeaponHealth = 20;
+                    break;
+                case ShipWeapons.Missile:
+                    Accuracy = 70;
+                    Damage = 40;
                     WeaponSize = 4;
+                    WeaponHealth = 20;
+                    break;
+                case ShipWeapons.Beam:
+                    Accuracy = 95;
+                    Damage = 15;
+                    WeaponSize = 4;
+                    WeaponHealth = 20;
                     break;
                 default : 
                     throw new NotImplementedException();
@@ -114,22 +119,28 @@ namespace STL___Slower_Than_Light
                 case ShipHullLevel.Basic:
                     Armour = 0;
                     HullSize = 4;
+                    HullHealth = 50;
                     break;
                 case ShipHullLevel.Reinforced:
                     Armour = 10;
                     HullSize = 5;
+                    HullHealth = 100;
                     break;
                 case ShipHullLevel.HeavilyArmoured:
                     Armour = 20;
                     HullSize = 6;
+                    HullHealth = 150;
                     break;
                 case ShipHullLevel.Drone:
                     Armour = 10;    
                     HullSize = 4;
+                    HullHealth = 50;
                     break;
                 default:
                     throw new NotImplementedException();
             }
+
+            TotalHealth = CockpitHealth + EngineHealth + WeaponHealth + HullHealth; 
         }
         /// <summary>
         /// 
@@ -145,7 +156,7 @@ namespace STL___Slower_Than_Light
                 offsetY++;
             }
             MenuOptions.ResetCursorPosition(MenuNames.Stats, 0, offsetY + 1);
-            Console.WriteLine($"Health:      {Health} ");
+            Console.WriteLine($"Health:      {TotalHealth} ");
             MenuOptions.ResetCursorPosition(MenuNames.Stats, 0, offsetY + 2);
             Console.WriteLine($"Armour:      {Armour}");
             MenuOptions.ResetCursorPosition(MenuNames.Stats, 0, offsetY + 3);
@@ -239,6 +250,31 @@ namespace STL___Slower_Than_Light
             Console.WriteLine($"Weapon: {Weapon}, Hull: {Hull}, Engine: {Engine}");
         }
 
+        public string CalculateChanceToHit(Spaceship target, TargetComponent targetComponent, double distance)
+        {
+            double distanceDifficultyModifier = 1 / (Math.Sqrt(distance) * 5);
+            double chanceToHit = 1 - Math.Pow(distanceDifficultyModifier, Math.Sqrt(GetComponentSize(target,targetComponent)));
+            Random random = new Random();
+            return "";
+        }
+
+        public int GetComponentSize(Spaceship target,TargetComponent targetComponent)
+        {
+            switch (targetComponent)
+            {
+                case TargetComponent.Engines:
+                    return target.EngineSize;
+                case TargetComponent.Weapons:
+                    return target.WeaponSize;
+                case TargetComponent.Hull:
+                    return target.HullSize;
+                case TargetComponent.Cokcpit:
+                    return target.CockpitSize;
+                default: throw new Exception();
+            }
+                
+        }
+
     }
 
     public enum ShipType
@@ -271,6 +307,14 @@ namespace STL___Slower_Than_Light
         DoubleBoosters,
         HyperDrive,
         Drone
+    }
+
+    public enum TargetComponent
+    {
+        Engines,
+        Hull,
+        Weapons,
+        Cokcpit
     }
 
 }

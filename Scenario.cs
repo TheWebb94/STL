@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -26,8 +27,6 @@ namespace STL___Slower_Than_Light
             enemyShip = newShip.SpawnSpaceShip(ShipType.Drone);
             enemyShip.DrawShip();
 
-
-
             StartCombat();
         }
 
@@ -42,18 +41,44 @@ namespace STL___Slower_Than_Light
         {
             bool inCombat = true;
 
+            int playerHealth = playerShip.TotalHealth;
+            int enemyHealth = enemyShip.TotalHealth;
+
+            DrawStats();
+
             while (inCombat)
             {
-                DrawStats();
+                PlayersTurn();
+
             }
         }
 
+        private void PlayersTurn()
+        {
+            MenuOptions.DrawPlayerTurnOptions();
+
+            char playerChoice = MenuOptions.PlayerEntry(MenuNames.Scenario, new List<char> { '1', '2', '3', '4' });
+
+            switch (playerChoice)
+            {
+                case '1':
+                   //engines
+                    break;
+                case '2':
+                   //hull
+                    break;
+                case '3':
+                    //wep
+                    break;
+                case '4':
+                    //cock
+                    break;
+            }
+        }
 
         public void DrawDistanceToEnemy()
         {
-            int distanceToEnemyX = DistanceToEnemyX();
-            int distanceToEnemyY = DistanceToEnemyY();
-            double distanceToEnemyXY = Math.Sqrt((distanceToEnemyX * distanceToEnemyX) + (distanceToEnemyY * distanceToEnemyY));
+            double distanceToEnemyXY = DistanceToEnemy();
 
             // Draw enemy ship type and distance
             MenuOptions.ResetCursorPosition(MenuNames.Stats, 0, 0);
@@ -61,6 +86,14 @@ namespace STL___Slower_Than_Light
             MenuOptions.ResetCursorPosition(MenuNames.Stats, 0, 1);
             Console.WriteLine($"Distance: {distanceToEnemyXY:0.000}");
 
+        }
+
+        private double DistanceToEnemy()
+        {
+            int distanceToEnemyX = DistanceToEnemyX();
+            int distanceToEnemyY = DistanceToEnemyY();
+            double distanceToEnemyXY = Math.Sqrt((distanceToEnemyX * distanceToEnemyX) + (distanceToEnemyY * distanceToEnemyY));
+            return distanceToEnemyXY;
         }
 
         internal int DistanceToEnemyX()
@@ -72,7 +105,5 @@ namespace STL___Slower_Than_Light
         {
             return enemyShip.PositionY - playerShip.PositionY;
         }
-
-         
     }
 }
