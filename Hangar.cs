@@ -129,7 +129,7 @@ namespace STL___Slower_Than_Light
 
                 if (choosingWeapon)
                 {
-                    DrawHangar();
+                    
                     MenuOptions.WeaponOptions();
                 }
             }
@@ -206,7 +206,6 @@ namespace STL___Slower_Than_Light
 
                 if (choosingEngine)
                 {
-                    DrawHangar();
                     MenuOptions.EngineOptions();
                 }
             }
@@ -284,7 +283,6 @@ namespace STL___Slower_Than_Light
 
                 if (choosingHull)
                 {
-                    DrawHangar();
                     MenuOptions.HullOptions();
                 }
             }

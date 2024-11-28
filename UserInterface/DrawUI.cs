@@ -152,6 +152,58 @@ namespace STL___Slower_Than_Light
                 }
             }
         }
+
+        // Draws ASCII end screen created using online ACII art generator https://patorjk.com/software/taag/#p=display&f=Graffiti&t=STL
+        internal static void GameVictory()
+        {
+            int logoPositionX = 22;
+            int logoPositionY = 3;
+
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.SetCursorPosition(logoPositionX, logoPositionY);
+            Console.WriteLine(" ____   ____.__        __                       ._.");
+            Console.SetCursorPosition(logoPositionX, logoPositionY + 1);
+            Console.WriteLine("\\   \\ /   /|__| _____/  |_  ___________ ___.__.| |");
+            Console.SetCursorPosition(logoPositionX, logoPositionY + 2);
+            Console.WriteLine(" \\   Y   / |  |/ ___\\   __\\/  _ \\_  __ <   |  || |");
+            Console.SetCursorPosition(logoPositionX, logoPositionY + 3);
+            Console.WriteLine("  \\     /  |  \\  \\___|  | (  <_> )  | \\/\\___  | \\|");
+            Console.SetCursorPosition(logoPositionX, logoPositionY + 4);
+            Console.WriteLine("   \\___/   |__|\\___  >__|  \\____/|__|   / ____| __");
+            Console.SetCursorPosition(logoPositionX, logoPositionY + 5);
+            Console.WriteLine("                   \\/                   \\/      \\/");
+
+            MenuOptions.PressToContinue();
+            Console.Clear();
+
+        }
+
+        // Draws ASCII end screen created using online ACII art generator https://patorjk.com/software/taag/#p=display&f=Graffiti&t=STL
+        internal static void GameOver()
+        {
+            int logoPositionX = 22;
+            int logoPositionY = 3;
+
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.SetCursorPosition(logoPositionX, logoPositionY);
+            Console.WriteLine("  ________                        ________                     ");
+            Console.SetCursorPosition(logoPositionX, logoPositionY+1);
+            Console.WriteLine(" /  _____/_____    _____   ____   \\_____  \\___  __ ___________ ");
+            Console.SetCursorPosition(logoPositionX, logoPositionY+2);
+            Console.WriteLine("/   \\  ___\\__  \\  /     \\_/ __ \\   /   |   \\  \\/ // __ \\_  __ \\");
+            Console.SetCursorPosition(logoPositionX, logoPositionY+3);
+            Console.WriteLine("\\    \\_\\  \\/ __ \\|  Y Y  \\  ___/  /    |    \\   /\\  ___/|  | \\/");
+            Console.SetCursorPosition(logoPositionX, logoPositionY+4);
+            Console.WriteLine(" \\______  (____  /__|_|  /\\___  > \\_______  /\\_/  \\___  >__|   ");
+            Console.SetCursorPosition(logoPositionX, logoPositionY+5);
+            Console.WriteLine("        \\/     \\/      \\/     \\/          \\/          \\/       ");
+
+            MenuOptions.PressToContinue();
+            Console.Clear();
+
+        }
     }
     public enum PanelOptions
     {

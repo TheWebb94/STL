@@ -82,7 +82,7 @@ namespace STL___Slower_Than_Light
                     break;
 
                 case ShipEngineLevel.Drone:
-                    DodgeChance = 10;
+                    DodgeChance = 25;
                     EngineSize = 2;
                     EngineHealth = 10;
                     break;
@@ -95,19 +95,19 @@ namespace STL___Slower_Than_Light
             {
                 case ShipWeapons.Laser:
                     Accuracy = 90;
-                    Damage = 20;
+                    Damage = 40;
                     WeaponSize = 2;
                     WeaponHealth = 20;
                     break;
                 case ShipWeapons.Missile:
                     Accuracy = 70;
-                    Damage = 40;
+                    Damage = 60;
                     WeaponSize = 4;
                     WeaponHealth = 20;
                     break;
                 case ShipWeapons.Beam:
                     Accuracy = 95;
-                    Damage = 15;
+                    Damage = 35;
                     WeaponSize = 4;
                     WeaponHealth = 20;
                     break;
@@ -134,7 +134,7 @@ namespace STL___Slower_Than_Light
                     break;
                 case ShipHullLevel.Drone:
                     Armour = 10;    
-                    HullSize = 4;
+                    HullSize = 8;
                     HullHealth = 50;
                     break;
                 default:
@@ -251,34 +251,98 @@ namespace STL___Slower_Than_Light
             Console.WriteLine($"Weapon: {Weapon}, Hull: {Hull}, Engine: {Engine}");
         }
         //Chance to hit was calculated with an equation i modeled (in the excel sheet)
-        // check the equation as the numbers dont look mright
         public double CalculateChanceToHit(Spaceship target, TargetComponent targetComponent, double distance)
         {
-            double distanceDifficultyModifier = 1 / (Math.Sqrt(distance) * 5);
-            double chanceToHit = 100*(1 - Math.Pow(distanceDifficultyModifier, 0.4 * GetComponentSize(target,targetComponent))); //preweapon accuracy chance t hit
+            double distanceDifficultyModifier = 1 / (Math.Sqrt(distance) * 5); // accuracy with only distance factored
+            double chanceToHit = 100*(1 - Math.Pow(distanceDifficultyModifier, 0.4 * GetComponentSize(target,targetComponent))); // accuracy before factoring in weapon accuracy chance to hit - normalised to 1-100 value
 
-            chanceToHit = (chanceToHit * Accuracy)/100;
-            double result = Math.Round(chanceToHit,0);
+            chanceToHit = (chanceToHit * Accuracy)/100;  //accuracy once weapon accuracy added
+
+            chanceToHit -= target.DodgeChance; //after factoring enemy dodgeechance
+
+            double result = Math.Round(chanceToHit,0); 
             return result;
         }
 
-        public int GetComponentSize(Spaceship target,TargetComponent targetComponent)
+        public string Attack(Spaceship target, TargetComponent targetComponent, double distance, double hitChance, bool isPlayerAttacking)
         {
-            switch (targetComponent)
+            bool isHit = RollToHit(hitChance);
+
+            if (isHit)
             {
-                case TargetComponent.Engines:
-                    return target.EngineSize;
-                case TargetComponent.Weapons:
-                    return target.WeaponSize;
-                case TargetComponent.Hull:
-                    return target.HullSize;
-                case TargetComponent.Cockpit:
-                    return target.CockpitSize;
-                default: throw new Exception();
+                int baseDamage = Damage;
+                int adjustedDamage = Math.Max(baseDamage - target.Armour, 0);
+
+                if (targetComponent == TargetComponent.Cockpit)
+                {
+                    int bonusDamage = 20;
+                    adjustedDamage = bonusDamage + adjustedDamage;
+
+                    target.TotalHealth -= adjustedDamage;
+
+                    if (isPlayerAttacking)
+                    {
+                        return $"Hit the cockpit dealing {bonusDamage} bonus damage, for {adjustedDamage} total!";
+                    }
+                    else
+                    {
+                        return $"Your cockpit was hit for {bonusDamage} bonus damage, for {adjustedDamage} total!";
+                    }
+                }
+
+                target.TotalHealth -= adjustedDamage;
+
+                if (isPlayerAttacking)
+                {
+                    return $"Hit the {targetComponent} of the enemy's ship dealing {adjustedDamage} damage!";
+                }
+                else
+                {
+                    return $"Your {targetComponent} was hit by the enemy for {adjustedDamage} damage!       ";
+                }
             }
-                
+            else
+            {
+                if (isPlayerAttacking)
+                {
+                    return $"Your attack on the enemy {targetComponent} missed!";
+                }
+                else
+                {
+                    return $"Enemy attack on your {targetComponent} missed!";
+                }
+            }
         }
 
+        private static bool RollToHit(double hitChance)
+        {
+            Random random = new Random();
+
+            bool isHit = random.Next(100) <= hitChance;
+
+            MenuOptions.ResetCursorPosition(MenuNames.Hangar, 0, 6);
+            return isHit;
+        }
+
+        public int GetComponentSize(Spaceship target,TargetComponent targetComponent)
+          {
+                switch (targetComponent)
+                 {
+                    case TargetComponent.Engines:
+                        return target.EngineSize;
+
+                     case TargetComponent.Weapons:
+                        return target.WeaponSize;
+
+                     case TargetComponent.Hull:
+                        return target.HullSize;
+
+                     case TargetComponent.Cockpit:
+                        return target.CockpitSize;
+
+                     default: throw new Exception();
+                }
+          }
     }
 
     public enum ShipType

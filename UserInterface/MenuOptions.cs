@@ -164,7 +164,35 @@ namespace STL___Slower_Than_Light
             MenuOptions.ResetCursorPosition(MenuNames.Hangar, 0, 3);
             Console.WriteLine("3. Weapons       ");
             MenuOptions.ResetCursorPosition(MenuNames.Hangar, 0, 4);
-            Console.WriteLine("3. Cockpit       ");
+            Console.WriteLine("4. Cockpit       ");
+        }
+
+        internal static void ClearHangarPanel()
+        {
+            MenuOptions.ResetCursorPosition(MenuNames.Hangar, 0, 0);
+            Console.WriteLine("                                                                                                ");
+            MenuOptions.ResetCursorPosition(MenuNames.Hangar, 0, 1);
+            Console.WriteLine("                                                                                                    ");
+            MenuOptions.ResetCursorPosition(MenuNames.Hangar, 0, 2);
+            Console.WriteLine("                                                                                                    ");
+            MenuOptions.ResetCursorPosition(MenuNames.Hangar, 0, 3);
+            Console.WriteLine("                                                                                                    ");
+            MenuOptions.ResetCursorPosition(MenuNames.Hangar, 0, 4);
+            Console.WriteLine("                                                                                                    ");
+            MenuOptions.ResetCursorPosition(MenuNames.Hangar, 0, 5);
+            Console.WriteLine("                                                                                                    ");
+            MenuOptions.ResetCursorPosition(MenuNames.Hangar, 0, 6);
+            Console.WriteLine("                                                                                                    ");
+
+        }
+
+        internal static void PressToContinue()
+        {
+            MenuOptions.ResetCursorPosition(MenuNames.Hangar, 70, 6);
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.Write("Press any button to continue");
+            Console.ReadKey();
+            Console.ResetColor();
         }
     }
 

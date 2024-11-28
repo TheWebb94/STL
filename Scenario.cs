@@ -10,7 +10,7 @@ namespace STL___Slower_Than_Light
 {
     internal class Scenario
     {
-
+        
         private Spaceship playerShip = PlayerShipManager.playerSpaceship;
         private Spaceship enemyShip;
         /// <summary>
@@ -41,41 +41,144 @@ namespace STL___Slower_Than_Light
         {
             bool inCombat = true;
 
-            //commented out while i work out if im using this
-           // int playerHealth = playerShip.TotalHealth;
-           // int enemyHealth = enemyShip.TotalHealth;
-
-            DrawStats();
-
             while (inCombat)
             {
+                DrawStats();
+
                 PlayersTurn();
 
+                DrawStats();
+
+                Console.ReadKey();
+
+                if (!IsSpaceshipAlive(enemyShip))
+                {
+                    MenuOptions.ClearHangarPanel();
+                    MenuOptions.ResetCursorPosition(MenuNames.Hangar, 0, 0);
+                    Console.WriteLine("Enemy spaceship has been destroyed                                               ");
+                    MenuOptions.ResetCursorPosition(MenuNames.Hangar, 0, 1);
+                    MenuOptions.PressToContinue();
+                    DrawUI.GameVictory();
+                    inCombat = false;
+                    break;
+                }
+
+                EnemysTurn();
+
+                DrawStats();
+                
+                Console.ReadKey();
+
+                if (!IsSpaceshipAlive(playerShip))
+                {
+                    MenuOptions.ClearHangarPanel();
+                    MenuOptions.ResetCursorPosition(MenuNames.Hangar, 0, 0);
+                    Console.WriteLine("Your spaceship has been destroyed                                              ");
+                    MenuOptions.ResetCursorPosition(MenuNames.Hangar, 0, 1);
+                    MenuOptions.PressToContinue();
+                    DrawUI.GameOver();
+                    inCombat = false;
+                    break;
+                }
+               
             }
+        }
+
+        private void EnemysTurn()
+        {
+
+            MenuOptions.ClearHangarPanel();
+
+            TargetComponent targetComponent = SelectRandomTarget();
+
+            double distance = DistanceToEnemy();
+            double chanceToHit = enemyShip.CalculateChanceToHit(playerShip, targetComponent, distance);
+
+            MenuOptions.ResetCursorPosition(MenuNames.Hangar, 0, 0);
+            Console.WriteLine($"Enemy attacking your {targetComponent} with {chanceToHit}% chance to hit!       ");
+
+            // Perform the attack and capture the result
+            string attackResult = enemyShip.Attack(playerShip, targetComponent, distance, chanceToHit, false);
+
+            MenuOptions.ResetCursorPosition(MenuNames.Hangar, 0, 5);
+            MenuOptions.PressToContinue();
+
+            // Display the result of the attack
+            MenuOptions.ResetCursorPosition(MenuNames.Hangar, 0, 1);
+            Console.WriteLine(attackResult);
+        }
+
+        private TargetComponent SelectRandomTarget()
+        {
+            Array components = Enum.GetValues(typeof(TargetComponent));
+            Random random = new Random();
+            return (TargetComponent)components.GetValue(random.Next(components.Length));
+        }
+
+        private bool IsSpaceshipAlive(Spaceship targetSpaceship)
+        {
+            if (targetSpaceship.TotalHealth <= 0)
+            {
+                return false;
+            }
+           else 
+                return true;
         }
 
         private void PlayersTurn()
         {
+            MenuOptions.ClearHangarPanel();
+            
             MenuOptions.DrawPlayerTurnOptions();
             DrawChanceToHitOnComponents();
 
             char playerChoice = MenuOptions.PlayerEntry(MenuNames.Scenario, new List<char> { '1', '2', '3', '4' });
 
+            TargetComponent targetComponent = SetAttackTarget(playerChoice);
+
+            double distance = DistanceToEnemy();
+
+            double chanceToHit = playerShip.CalculateChanceToHit(enemyShip, targetComponent, distance);
+
+            MenuOptions.ResetCursorPosition(MenuNames.Hangar, 0, 5);
+
+            Console.WriteLine($"Attacking {targetComponent} with {chanceToHit}% chance to hit!            ");
+
+            MenuOptions.ResetCursorPosition(MenuNames.Hangar, 0, 6);
+            MenuOptions.PressToContinue();
+
+            string attackResult = playerShip.Attack(enemyShip, targetComponent, distance, chanceToHit, true);
+
+
+            MenuOptions.ResetCursorPosition(MenuNames.Hangar, 0, 6);
+
+            Console.WriteLine(attackResult);
+
+        }
+
+        private static TargetComponent SetAttackTarget(char playerChoice)
+        {
+            TargetComponent targetComponent;
             switch (playerChoice)
             {
                 case '1':
-                   //engines
+                    targetComponent = TargetComponent.Engines;
                     break;
                 case '2':
-                   //hull
+                    targetComponent = TargetComponent.Hull;
                     break;
                 case '3':
-                    //wep
+                    targetComponent = TargetComponent.Weapons;
                     break;
                 case '4':
-                    //cock
+                    targetComponent = TargetComponent.Cockpit;
+                    break;
+                default:
+                    targetComponent = TargetComponent.Hull;
                     break;
             }
+
+            return targetComponent;
         }
 
         private void DrawChanceToHitOnComponents()
