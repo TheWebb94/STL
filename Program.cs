@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+// gameplay loop needs creating
+// multiple enemy types with different stats, randomly fight one of 3/4
+
 
 namespace STL___Slower_Than_Light
 {
@@ -11,28 +14,18 @@ namespace STL___Slower_Than_Light
     {
         static void Main()
         {
-
             bool inGame = true;
 
             while (inGame == true)
             {
-
                 DrawUI.TitleScreen();
-                char menuChoice = GetPlayerChoice.PlayerEntry();
+                char menuChoice = MenuOptions.PlayerEntry(MenuNames.Title, new List<char> { '1', '2', '3'});
 
                 switch (menuChoice)
-                //while loop for remaining in combat so main menu can be returned to, same for hangar
                 {
                     case '1':
-                        bool inFight = true;
                         Scenario battleScene = new Scenario();
                         battleScene.LaunchScenario();
-                        FightStats stats = new FightStats(battleScene);
-                        stats.Draw();
-                        while (inFight == true)
-                        {
-
-                        }
                         break;
                     case '2':
                         Hangar.LaunchHangar();

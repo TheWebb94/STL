@@ -54,6 +54,7 @@ namespace STL___Slower_Than_Light
             UpdateShipStats();
         }
 
+
         public void UpdateShipStats()
         {
             
@@ -249,13 +250,16 @@ namespace STL___Slower_Than_Light
             Console.WriteLine($"Updated {this._shipType} Ship Stats:");
             Console.WriteLine($"Weapon: {Weapon}, Hull: {Hull}, Engine: {Engine}");
         }
-
-        public string CalculateChanceToHit(Spaceship target, TargetComponent targetComponent, double distance)
+        //Chance to hit was calculated with an equation i modeled (in the excel sheet)
+        // check the equation as the numbers dont look mright
+        public double CalculateChanceToHit(Spaceship target, TargetComponent targetComponent, double distance)
         {
             double distanceDifficultyModifier = 1 / (Math.Sqrt(distance) * 5);
-            double chanceToHit = 1 - Math.Pow(distanceDifficultyModifier, Math.Sqrt(GetComponentSize(target,targetComponent)));
-            Random random = new Random();
-            return "";
+            double chanceToHit = 100*(1 - Math.Pow(distanceDifficultyModifier, 0.4 * GetComponentSize(target,targetComponent))); //preweapon accuracy chance t hit
+
+            chanceToHit = (chanceToHit * Accuracy)/100;
+            double result = Math.Round(chanceToHit,0);
+            return result;
         }
 
         public int GetComponentSize(Spaceship target,TargetComponent targetComponent)
@@ -268,7 +272,7 @@ namespace STL___Slower_Than_Light
                     return target.WeaponSize;
                 case TargetComponent.Hull:
                     return target.HullSize;
-                case TargetComponent.Cokcpit:
+                case TargetComponent.Cockpit:
                     return target.CockpitSize;
                 default: throw new Exception();
             }
@@ -314,7 +318,7 @@ namespace STL___Slower_Than_Light
         Engines,
         Hull,
         Weapons,
-        Cokcpit
+        Cockpit
     }
 
 }

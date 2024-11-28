@@ -43,22 +43,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActiveShipManager.cs" />
-    <Compile Include="DrawSpaceships.cs" />
-    <Compile Include="DrawUI.cs" />
-    <Compile Include="GetPlayerChoice.cs" />
+    <Compile Include="Spaceships\SpaceshipFactory.cs" />
+    <Compile Include="Spaceships\DrawSpaceships.cs" />
+    <Compile Include="Spaceships\PlayerShipManager.cs" />
+    <Compile Include="UserInterface\DrawUI.cs" />
     <Compile Include="Hangar.cs" />
-    <Compile Include="MenuOptions.cs" />
+    <Compile Include="UserInterface\MenuOptions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scenario.cs" />
-    <Compile Include="FightStats.cs" />
+    <Compile Include="Spaceships\SpaceshipComponentDrawer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UserInterface\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

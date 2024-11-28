@@ -33,12 +33,13 @@ namespace STL___Slower_Than_Light
 
             ResetCursorPosition(MenuNames.Hangar, 5);
         }
+
         /// <summary>
         /// Gets an input from the user
         /// </summary>
-        /// <param name="menuToNavigate">enterr which menu you are overwriting</param>
-        /// <param name="validOptions">'new List<char> ' then list the options the player can enter, typically, 1-x</param>
-        /// <returns>the valid character the user has entered</returns>
+        /// <param name="menuToNavigate"> enterr which menu you are overwriting </param>
+        /// <param name="validOptions"> then list the options the player can enter, typically, 1-x</param>
+        /// <returns>the valid entered value</returns>
         public static char PlayerEntry(MenuNames menuToNavigate, List<char> validOptions)
         {
             ResetCursorPosition(menuToNavigate);
@@ -153,6 +154,7 @@ namespace STL___Slower_Than_Light
 
         public static void DrawPlayerTurnOptions()
         {
+
             MenuOptions.ResetCursorPosition(MenuNames.Hangar);
             Console.WriteLine("Your turn!, choose which component of enemy ship to target:");
             MenuOptions.ResetCursorPosition(MenuNames.Hangar, 0, 1);
