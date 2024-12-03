@@ -10,10 +10,12 @@ using System.Threading.Tasks;
 
 namespace STL___Slower_Than_Light
 {
+    // Main program - handles the flow of the main menu
     internal class Program
     {
         static void Main()
         {
+            Console.CursorVisible = false;
             bool inGame = true;
 
             while (inGame == true)
@@ -23,13 +25,18 @@ namespace STL___Slower_Than_Light
 
                 switch (menuChoice)
                 {
+                    //Launch the combat scenario
                     case '1':
                         Scenario battleScene = new Scenario();
                         battleScene.LaunchScenario();
                         break;
+
+                    //Launch the hangar customisation menu
                     case '2':
                         Hangar.LaunchHangar();
                         break;
+
+                    //Close the game/end application
                     case '3':
                         inGame = false;
                         break;

@@ -8,6 +8,10 @@ namespace STL___Slower_Than_Light
 {
     internal class MenuOptions
     {
+
+        /// <summary>
+        /// Draws the text for the main title menu options
+        /// </summary>
         public static void TitleMenuOptions()
         {
             Console.SetCursorPosition(2, 22);
@@ -18,6 +22,10 @@ namespace STL___Slower_Than_Light
             Console.WriteLine("3. Exit Game");
         }
 
+
+        /// <summary>
+        /// Draws the text foir the main hangar menu options
+        /// </summary>
         public static void HangerMenuOptions()
         {
             Console.SetCursorPosition(3, 22);
@@ -35,11 +43,11 @@ namespace STL___Slower_Than_Light
         }
 
         /// <summary>
-        /// Gets an input from the user
+        /// Method used to take valid inputs for different sized menus.
         /// </summary>
-        /// <param name="menuToNavigate"> enterr which menu you are overwriting </param>
-        /// <param name="validOptions"> then list the options the player can enter, typically, 1-x</param>
-        /// <returns>the valid entered value</returns>
+        /// <param name="menuToNavigate">input the panel you are entering a vule in to</param>
+        /// <param name="validOptions">create an instance of a new list to give the valid options to take from the user</param>
+        /// <returns>the validated user input</returns>
         public static char PlayerEntry(MenuNames menuToNavigate, List<char> validOptions)
         {
             ResetCursorPosition(menuToNavigate);
@@ -62,13 +70,14 @@ namespace STL___Slower_Than_Light
                 }
             }
         }
+
         /// <summary>
         /// Method for setting the cursor position to a specific menu.  default is in position 1,1 of the selected panel
         /// </summary>
-        /// <param name="menu">enter the menu you are setting the cursor position for</param>
-        /// <param name="offsetX">how much do you want to offset x position by</param>
-        /// <param name="offsetY">how much you want to offset y polsition by</param>
-        /// <exception cref="NotImplementedException"></exception>
+        /// <param name="menu">menu panel you are setting the cursor position to</param>
+        /// <param name="offsetX">how many columns you want to offset the default position by</param>
+        /// <param name="offsetY">how many rows you want to offset the defauult position by</param>
+        /// <exception cref="Exception"></exception>
         public static void ResetCursorPosition(MenuNames menu, int offsetX = 0, int offsetY = 0)
         {
             int cursorPostitionX;
@@ -101,9 +110,11 @@ namespace STL___Slower_Than_Light
             }
         }
 
+        /// <summary>
+        /// Provides the text for the engine cuustomisation menuu
+        /// </summary>
         internal static void EngineOptions()
         {
-            //  ClearMenuPanel();
             int offsetY = 0;
             ResetCursorPosition(MenuNames.Hangar, 0, offsetY);
             Console.WriteLine("Which engine would you like to install?");
@@ -119,6 +130,10 @@ namespace STL___Slower_Than_Light
 
         }
 
+
+        /// <summary>
+        /// provides the text for the hull customisation menu
+        /// </summary>
         internal static void HullOptions()
         {
             int offsetY = 0;
@@ -133,9 +148,11 @@ namespace STL___Slower_Than_Light
             ResetCursorPosition(MenuNames.Hangar, 0, offsetY + 4);
             Console.WriteLine("4. Exit");
             ResetCursorPosition(MenuNames.Hangar, 0, offsetY + 5);
-
         }
 
+        /// <summary>
+        /// provides the text for the weapon customisation menu
+        /// </summary>
         internal static void WeaponOptions()
         {
             int offsetY = 0;
@@ -152,6 +169,9 @@ namespace STL___Slower_Than_Light
             ResetCursorPosition(MenuNames.Hangar, 0, offsetY + 5);
         }
 
+        /// <summary>
+        /// provides the text for the players turn when in the combat scenario
+        /// </summary>
         public static void DrawPlayerTurnOptions()
         {
 
@@ -167,7 +187,10 @@ namespace STL___Slower_Than_Light
             Console.WriteLine("4. Cockpit       ");
         }
 
-        internal static void ClearHangarPanel()
+        /// <summary>
+        /// clears the text in the menu panel
+        /// </summary>
+        internal static void ClearMenuPanel()
         {
             MenuOptions.ResetCursorPosition(MenuNames.Hangar, 0, 0);
             Console.WriteLine("                                                                                                ");
@@ -186,6 +209,9 @@ namespace STL___Slower_Than_Light
 
         }
 
+        /// <summary>
+        /// Creates a prompt for the player to continue, this effectively works as the passing of time in the combat scenario so the playerr can progress throguh the steps
+        /// </summary>
         internal static void PressToContinue()
         {
             MenuOptions.ResetCursorPosition(MenuNames.Hangar, 70, 6);
@@ -196,6 +222,9 @@ namespace STL___Slower_Than_Light
         }
     }
 
+    /// <summary>
+    /// Defines the names of different menu areas
+    /// </summary>
     public enum MenuNames
     {
         Hangar,

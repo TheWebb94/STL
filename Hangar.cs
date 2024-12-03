@@ -9,10 +9,13 @@ namespace STL___Slower_Than_Light
 {
     internal class Hangar
     {
+        /// <summary>
+        /// Menu area in which the player can customise the player ship
+        /// </summary>
         public static void LaunchHangar()
         {
             bool inHangar = true;
-
+            // Drraw UI components then give menu options
             DrawHangar();
             MenuOptions.HangerMenuOptions();
 
@@ -22,23 +25,27 @@ namespace STL___Slower_Than_Light
 
                 switch (menuChoice)
                 {
+                    //Engine customisation options
                     case '1':
                         DrawHangar();
                         MenuOptions.EngineOptions();
                         UpgradeEngine();
                         break;
 
+                    //Hull customisation options
                     case '2':
                         DrawHangar();
                         MenuOptions.HullOptions();
                         UpgradeHull();
                         break;
 
+                    //weapon cuustomisation options
                     case '3':
                         DrawHangar();
                         MenuOptions.WeaponOptions();
                         UpgradeWeapons();
                         break;
+
                     case '4':
                         inHangar = false;
                         break;
@@ -58,6 +65,9 @@ namespace STL___Slower_Than_Light
             PlayerShipManager.playerSpaceship.DisplayShipStats();
         }
 
+        /// <summary>
+        /// Opens the menu to change the player weapons. For each chosen option it either prints to log to report if a change has been made or if you have chosne a componenmt that is already fitted
+        /// </summary>
         private static void UpgradeWeapons()
         {
             bool choosingWeapon = true;
@@ -135,6 +145,9 @@ namespace STL___Slower_Than_Light
             }
         }
 
+        /// <summary>
+        /// Opens the menu to change the player engines. For each chosen option it either prints to log to report if a change has been made or if you have chosne a componenmt that is already fitted
+        /// </summary>
         private static void UpgradeEngine()
         {
             bool choosingEngine = true;
@@ -209,8 +222,11 @@ namespace STL___Slower_Than_Light
                     MenuOptions.EngineOptions();
                 }
             }
-
         }
+
+        /// <summary>
+        /// Opens the menu to change the player hull. For each chosen option it either prints to log to report if a change has been made or if you have chosne a componenmt that is already fitted
+        /// </summary>
         private static void UpgradeHull()
         {
             bool choosingHull = true;
@@ -287,7 +303,5 @@ namespace STL___Slower_Than_Light
                 }
             }
         }
-
     }
-
 }

@@ -6,9 +6,13 @@ using System.Threading.Tasks;
 
 namespace STL___Slower_Than_Light
 {
+    /// <summary>
+    /// Class that stores the drawings for each component of the customisable ship 
+    /// </summary>
     internal class SpaceshipComponentDrawer
     {
        
+        //all weapon options
         public static string WeaponBuilder(string WeaponChoice)
         {
             string WeaponLayout;
@@ -30,6 +34,7 @@ namespace STL___Slower_Than_Light
             return WeaponLayout;
         }
 
+        //all hull options
         public static string HullBuilder(string hullChoice)
         {
             string hullLayout;
@@ -51,6 +56,7 @@ namespace STL___Slower_Than_Light
             return hullLayout;
         }
 
+        //all engine options
         public static string EngineBuilder(string engineChoice)
         {
             string engineLayout;

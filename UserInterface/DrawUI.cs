@@ -54,6 +54,11 @@ namespace STL___Slower_Than_Light
             Console.SetCursorPosition(logoPositionX, logoPositionY+5);
             Console.WriteLine("        \\/                    \\/");
         }
+
+        /// <summary>
+        /// draws the chosen panel, each panel has predefined start positions and sizes
+        /// </summary>
+        /// <param name="panelToDraw">enter valid option from the eneum PanelOptions</param>
         public static void DrawPanel(PanelOptions panelToDraw)
         {
 
@@ -64,6 +69,7 @@ namespace STL___Slower_Than_Light
 
             switch (panelToDraw)
             {
+            //Sets the panel location and size based on the parameter given
                 case PanelOptions.menu:
                     panelWidth = 116;
                     panelHeight = 9;
@@ -130,14 +136,16 @@ namespace STL___Slower_Than_Light
             Console.ResetColor();
         }
 
-
+        /// <summary>
+        /// Method to draw a random set of stars in the background to create a space vibe
+        /// </summary>
         public static void Starfield()
         {
             Random rand = new Random();
             int screenWidth = 89;
             int screenHeight = 19;
 
-            // Create a starfield effect by drawing stars randomly in the space the action panel is drawn
+            // draws stars randomly in the space the action panel is drawn
             for (int y = 1; y < screenHeight; y++)
             {
                 for (int x = 1; x < screenWidth; x++)

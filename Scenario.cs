@@ -53,7 +53,7 @@ namespace STL___Slower_Than_Light
 
                 if (!IsSpaceshipAlive(enemyShip))
                 {
-                    MenuOptions.ClearHangarPanel();
+                    MenuOptions.ClearMenuPanel();
                     MenuOptions.ResetCursorPosition(MenuNames.Hangar, 0, 0);
                     Console.WriteLine("Enemy spaceship has been destroyed                                               ");
                     MenuOptions.ResetCursorPosition(MenuNames.Hangar, 0, 1);
@@ -71,7 +71,7 @@ namespace STL___Slower_Than_Light
 
                 if (!IsSpaceshipAlive(playerShip))
                 {
-                    MenuOptions.ClearHangarPanel();
+                    MenuOptions.ClearMenuPanel();
                     MenuOptions.ResetCursorPosition(MenuNames.Hangar, 0, 0);
                     Console.WriteLine("Your spaceship has been destroyed                                              ");
                     MenuOptions.ResetCursorPosition(MenuNames.Hangar, 0, 1);
@@ -87,7 +87,7 @@ namespace STL___Slower_Than_Light
         private void EnemysTurn()
         {
 
-            MenuOptions.ClearHangarPanel();
+            MenuOptions.ClearMenuPanel();
 
             TargetComponent targetComponent = SelectRandomTarget();
 
@@ -127,7 +127,7 @@ namespace STL___Slower_Than_Light
 
         private void PlayersTurn()
         {
-            MenuOptions.ClearHangarPanel();
+            MenuOptions.ClearMenuPanel();
             
             MenuOptions.DrawPlayerTurnOptions();
             DrawChanceToHitOnComponents();

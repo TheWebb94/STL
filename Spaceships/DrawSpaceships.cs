@@ -10,7 +10,7 @@ namespace STL___Slower_Than_Light
    
 
     /// <summary>
-    /// Creation of player and enemy ships, giving locations, and draws them
+    /// Creation of player and enemy ships, giving locations, stats, and draws them
     /// </summary>
     public class Spaceship
     {
@@ -54,7 +54,10 @@ namespace STL___Slower_Than_Light
             UpdateShipStats();
         }
 
-
+        /// <summary>
+        /// This updates the ships current stats so the stats can reconfigure as the player makes changes in the hangar, and again between turns in combat
+        /// </summary>
+        /// <exception cref="NotImplementedException"></exception>
         public void UpdateShipStats()
         {
             
@@ -143,11 +146,12 @@ namespace STL___Slower_Than_Light
 
             TotalHealth = CockpitHealth + EngineHealth + WeaponHealth + HullHealth; 
         }
+
         /// <summary>
-        /// 
+        /// This draws the stats for the chosen ship, used in the hangar and for each player+enemy ship while in combat
         /// </summary>
-        /// <param name="offsetY">how much to offset Y position in menu by</param>
-        /// <param name="displayShipType">bool on whether to display the ship type or not</param>
+        /// <param name="offsetY"></param>
+        /// <param name="displayShipType"></param>
         public void DisplayShipStats(int offsetY = 0, bool displayShipType = true)
         {
             if (displayShipType)
@@ -168,6 +172,10 @@ namespace STL___Slower_Than_Light
             Console.WriteLine($"Dodge%:      {DodgeChance}");
         }
 
+        /// <summary>
+        /// Method to draw the player or enemy ship
+        /// </summary>
+        /// <exception cref="NotImplementedException"></exception>
         public void DrawShip()
         {
             switch (_shipType)
@@ -186,6 +194,9 @@ namespace STL___Slower_Than_Light
             }
         }
 
+        /// <summary>
+        /// Method to give initial location for the spawned ship. player is fixed, enemy should be random within a given range
+        /// </summary>
         public void SetShipLocation()
         {
             switch(_shipType)
@@ -201,6 +212,10 @@ namespace STL___Slower_Than_Light
             }
         }
 
+        /// <summary>
+        /// Gets the random x and y spawn location for enemyship
+        /// </summary>
+        /// <returns></returns>
         private (int, int) GetRandomCoordinates()
         {
             Random random = new Random();
@@ -215,6 +230,9 @@ namespace STL___Slower_Than_Light
             _positionY = y;
         }
 
+        /// <summary>
+        /// Draws the player ship
+        /// </summary>
         private void DrawPlayerShip()
         {
             Console.SetCursorPosition(_positionX, _positionY);
@@ -230,6 +248,9 @@ namespace STL___Slower_Than_Light
 
         }
         
+        /// <summary>
+        /// Draws the drone
+        /// </summary>
         private void DrawDroneShip()
         {
             Console.SetCursorPosition(_positionX, _positionY);
@@ -244,16 +265,11 @@ namespace STL___Slower_Than_Light
             Console.Write("--==--");
         }
 
-        public void UpdateShipComponenetMessage()
-        {
-            MenuOptions.ResetCursorPosition(MenuNames.Title);
-            Console.WriteLine($"Updated {this._shipType} Ship Stats:");
-            Console.WriteLine($"Weapon: {Weapon}, Hull: {Hull}, Engine: {Engine}");
-        }
-        //Chance to hit was calculated with an equation i modeled (in the excel sheet)
+        //Chance to hit was calculated with an equation i modeled (in the excel sheet "Attack balancing sheet")
         public double CalculateChanceToHit(Spaceship target, TargetComponent targetComponent, double distance)
         {
             double distanceDifficultyModifier = 1 / (Math.Sqrt(distance) * 5); // accuracy with only distance factored
+           
             double chanceToHit = 100*(1 - Math.Pow(distanceDifficultyModifier, 0.4 * GetComponentSize(target,targetComponent))); // accuracy before factoring in weapon accuracy chance to hit - normalised to 1-100 value
 
             chanceToHit = (chanceToHit * Accuracy)/100;  //accuracy once weapon accuracy added
@@ -261,9 +277,19 @@ namespace STL___Slower_Than_Light
             chanceToHit -= target.DodgeChance; //after factoring enemy dodgeechance
 
             double result = Math.Round(chanceToHit,0); 
+
             return result;
         }
 
+        /// <summary>
+        /// performs the attack on the targeted spaceship
+        /// </summary>
+        /// <param name="target">give the player or enemy ship (shiptype)</param>
+        /// <param name="targetComponent">give the component the player wants to target</param>
+        /// <param name="distance">how far away the target and ship firing are</param>
+        /// <param name="hitChance">the number to beat when rolling to hit the target</param>
+        /// <param name="isPlayerAttacking">changes the messaging when logging the result of the attack so that is unique for the player and enemy attack turns</param>
+        /// <returns></returns>
         public string Attack(Spaceship target, TargetComponent targetComponent, double distance, double hitChance, bool isPlayerAttacking)
         {
             bool isHit = RollToHit(hitChance);
@@ -314,6 +340,11 @@ namespace STL___Slower_Than_Light
             }
         }
 
+        /// <summary>
+        /// performs the roll to hit
+        /// </summary>
+        /// <param name="hitChance">the target to beat, give maximum for 1%, 0 for guaranteed hit</param>
+        /// <returns></returns>
         private static bool RollToHit(double hitChance)
         {
             Random random = new Random();
@@ -324,6 +355,13 @@ namespace STL___Slower_Than_Light
             return isHit;
         }
 
+        /// <summary>
+        /// Checks the target components size so accuracy calculation can be made
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="targetComponent"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public int GetComponentSize(Spaceship target,TargetComponent targetComponent)
           {
                 switch (targetComponent)
