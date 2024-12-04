@@ -15,6 +15,7 @@ namespace STL___Slower_Than_Light
     {
         static void Main()
         {
+
             Console.CursorVisible = false;
             bool inGame = true;
 
